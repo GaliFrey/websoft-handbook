@@ -1,0 +1,49 @@
+[project]
+site_name = "WebSoft Handbook"
+site_description = "Практические рецепты, разборы и руководства по WebSoft"
+docs_dir = "docs"
+site_dir = "site"
+# site_url и repo_url будут заданы после выбора места публикации.
+nav = [
+  { "Главная" = "index.md" },
+  { "Рецепты" = "recipes/index.md" },
+  { "Разборы" = "explanations/index.md" },
+  { "Руководства" = "guides/index.md" },
+]
+
+[project.theme]
+variant = "modern"
+language = "ru"
+font = false
+features = [
+  "navigation.tabs",
+  "navigation.top",
+  "content.code.copy",
+  "content.tabs.link",
+  "search.highlight",
+]
+
+[[project.theme.palette]]
+scheme = "default"
+primary = "teal"
+accent = "teal"
+toggle.icon = "material/brightness-7"
+toggle.name = "Переключить на тёмную тему"
+
+[[project.theme.palette]]
+scheme = "slate"
+primary = "teal"
+accent = "teal"
+toggle.icon = "material/brightness-4"
+toggle.name = "Переключить на светлую тему"
+
+[project.markdown_extensions]
+admonition = {}
+attr_list = {}
+md_in_html = {}
+tables = {}
+toc.permalink = true
+pymdownx.details = {}
+pymdownx.highlight.anchor_linenums = true
+pymdownx.superfences = {}
+pymdownx.tabbed.alternate_style = true
