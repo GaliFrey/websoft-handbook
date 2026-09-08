@@ -23,6 +23,7 @@ hide:
     Как работает механизм, какие есть варианты и ограничения.
 
     - [ZIP-архивы через Websoft.Zip](explanations/websoft-zip/index.md)
+    - [Регулярные выражения через WebSoft.RegExp](explanations/websoft-regexp/index.md)
 
     [Открыть разборы](explanations/index.md)
 

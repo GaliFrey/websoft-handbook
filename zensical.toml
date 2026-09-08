@@ -14,6 +14,7 @@ nav = [
       { "Сборка 434" = "explanations/websoft-zip/434/index.md" },
       { "Сборка 906" = "explanations/websoft-zip/906/index.md" },
     ] },
+    { "Регулярные выражения через WebSoft.RegExp" = "explanations/websoft-regexp/index.md" },
   ] },
   { "Руководства" = [
     { "Все руководства" = "guides/index.md" },
