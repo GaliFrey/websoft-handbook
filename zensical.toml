@@ -7,7 +7,14 @@ site_dir = "site"
 nav = [
   { "Главная" = "index.md" },
   { "Рецепты" = "recipes/index.md" },
-  { "Разборы" = "explanations/index.md" },
+  { "Разборы" = [
+    { "Все разборы" = "explanations/index.md" },
+    { "ZIP-архивы через Websoft.Zip" = [
+      { "Обзор" = "explanations/websoft-zip/index.md" },
+      { "Сборка 434" = "explanations/websoft-zip/434/index.md" },
+      { "Сборка 906" = "explanations/websoft-zip/906/index.md" },
+    ] },
+  ] },
   { "Руководства" = [
     { "Все руководства" = "guides/index.md" },
     { "WebSocket в WebTutor" = [
@@ -28,11 +35,6 @@ nav = [
         { "Закрытие соединений" = "guides/websockets/906/closing.md" },
       ] },
       { "Тестовый HTML-клиент" = "guides/websockets/ws-client.md" },
-    ] },
-    { "ZIP-архивы через Websoft.Zip" = [
-      { "Обзор" = "guides/websoft-zip/index.md" },
-      { "Сборка 434" = "guides/websoft-zip/434/index.md" },
-      { "Сборка 906" = "guides/websoft-zip/906/index.md" },
     ] },
   ] },
 ]
