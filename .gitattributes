@@ -1,0 +1,21 @@
+# Normalize text files across development and CI environments.
+* text=auto eol=lf
+
+# Windows command scripts require CRLF for maximum compatibility.
+*.bat text eol=crlf
+*.cmd text eol=crlf
+
+# Binary files must not be line-ending normalized or text-merged.
+*.7z binary
+*.gif binary
+*.gz binary
+*.ico binary
+*.jpeg binary
+*.jpg binary
+*.pdf binary
+*.png binary
+*.tar binary
+*.tgz binary
+*.webp binary
+*.zip binary
+objects/resources/*.data binary

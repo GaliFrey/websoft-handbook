@@ -8,7 +8,28 @@ nav = [
   { "Главная" = "index.md" },
   { "Рецепты" = "recipes/index.md" },
   { "Разборы" = "explanations/index.md" },
-  { "Руководства" = "guides/index.md" },
+  { "Руководства" = [
+    { "Все руководства" = "guides/index.md" },
+    { "WebSocket в WebTutor" = [
+      { "Обзор" = "guides/websockets/index.md" },
+      { "Сборка 434" = [
+        { "Обзор версии" = "guides/websockets/434/index.md" },
+        { "Подготовка и подключение" = "guides/websockets/434/connection.md" },
+        { "Отправка сообщений" = "guides/websockets/434/messages.md" },
+        { "Группы клиентов" = "guides/websockets/434/groups.md" },
+        { "Закрытие соединений" = "guides/websockets/434/closing.md" },
+      ] },
+      { "Сборка 906" = [
+        { "Обзор версии" = "guides/websockets/906/index.md" },
+        { "Подготовка и подключение" = "guides/websockets/906/connection.md" },
+        { "Отправка сообщений" = "guides/websockets/906/messages.md" },
+        { "Группы клиентов" = "guides/websockets/906/groups.md" },
+        { "Теги" = "guides/websockets/906/tags.md" },
+        { "Закрытие соединений" = "guides/websockets/906/closing.md" },
+      ] },
+      { "Тестовый HTML-клиент" = "guides/websockets/ws-client.md" },
+    ] },
+  ] },
 ]
 
 [project.theme]
