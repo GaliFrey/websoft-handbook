@@ -29,6 +29,11 @@ nav = [
       ] },
       { "Тестовый HTML-клиент" = "guides/websockets/ws-client.md" },
     ] },
+    { "ZIP-архивы через Websoft.Zip" = [
+      { "Обзор" = "guides/websoft-zip/index.md" },
+      { "Сборка 434" = "guides/websoft-zip/434/index.md" },
+      { "Сборка 906" = "guides/websoft-zip/906/index.md" },
+    ] },
   ] },
 ]
 
