@@ -6,7 +6,7 @@
 ## Статьи
 
 - [WebSoft HCM 434 и MSSQL](./434-mssql/index.md)
-- WebSoft HCM 434 и PostgreSQL — не проверено.
+- [WebSoft HCM 434 и PostgreSQL](./434-postgresql/index.md)
 - WebSoft HCM 906 и MSSQL — не проверено.
 - WebSoft HCM 906 и PostgreSQL — не проверено.
 

@@ -7,8 +7,7 @@
 
 В SQL встречаются параметры `@p0`, `@p1` и далее. Их значения указаны после
 примеров. Прикладной код должен выполнять XQuery, а не копировать полученный
-SQL: это внутренняя реализация provider, которая может измениться в другой
-сборке.
+SQL: внутренняя реализация может измениться в другой сборке.
 
 ## Получение полей
 
@@ -33,7 +32,7 @@ from dbo.[collaborators] t_elem
 
 Записи `Fields(id, fullname, position_name)` и
 `$elem/id, $elem/fullname, $elem/position_name` сформировали такой же SQL.
-Кавычки внутри `Fields()` на этом стенде результат не изменили.
+Кавычки внутри `Fields()` результат не изменили.
 
 ### Возврат всей записи
 
@@ -65,8 +64,7 @@ where t_elem.[id]=@p0
 ```
 
 Параметр: `@p0 BigInt = 1105387902724063510`. Состав `SELECT` зависит от
-схемы каталога конкретной сборки, поэтому этот кейс нужно повторять на каждом
-стенде.
+схемы каталога конкретной сборки.
 
 ### Псевдонимы полей
 
@@ -174,11 +172,8 @@ where t_elem.[fullname] like @p0
 | `_` | `%[_]%` |
 | `[` | `%[%` |
 
-Подчёркивание экранируется как литерал, а `%` остаётся SQL-маской. Поэтому
-`contains($elem/fullname, '%')` на стенде совпал со всеми 57 непустыми ФИО.
-Открывающая квадратная скобка передаётся в `LIKE` без дополнительного
-экранирования. Эти символы нельзя считать обычным текстом без проверки
-полученного параметра.
+Подчёркивание экранируется как литерал, `%` остаётся SQL-маской, а открывающая
+квадратная скобка передаётся в `LIKE` без дополнительного экранирования.
 
 Отрицание включает строки с `NULL`:
 
@@ -488,7 +483,7 @@ where
 return
   $elem/id,
   $elem/fullname,
-  $pos/name position_name
+  $pos/name
 ```
 
 **SQL:**
@@ -497,7 +492,7 @@ return
 select
   t_elem.[id],
   t_elem.[fullname],
-  t_pos.[name][position_name]
+  t_pos.[name]
 from dbo.[positions] t_pos,dbo.[collaborators] t_elem
 where t_elem.[position_id]=t_pos.[id]
   and t_elem.[id]=@p0
@@ -574,8 +569,7 @@ where t_elem.[id] in (
 
 ### Неподдерживаемые join, ljoin и rjoin
 
-Все четыре запроса этого подраздела на стенде 434 завершаются ошибкой до
-формирования SQL.
+Все четыре запроса этого подраздела завершаются ошибкой до формирования SQL.
 
 #### join
 
@@ -676,9 +670,8 @@ from dbo.[collaborators] t_elem
 where (t_elem.[category_id].exist('category_id[.=("123","456")]')=1)
 ```
 
-Сформированный SQL выполнился в MSSQL. Значения встроены в XQuery-выражение
-XML-метода. В наборе параметров команды также присутствуют `@p0` и `@p1` типа
-`BigInt`, но ссылок на них в SQL нет.
+Значения встроены в XQuery-выражение XML-метода; отдельные параметры в SQL не
+используются.
 
 Отрицание через `false()` превращается в невалидный MSSQL:
 
@@ -701,13 +694,45 @@ OR (((t_elem.[code] in (@p0,@p1)))  IS NULL))
 
 Параметры: `@p0 VarChar = 13744`, `@p1 VarChar = 109295`.
 
-MSSQL не разрешает сравнивать предикат `IN` с числом. Варианты
-`not MatchSome(...)` и `not(MatchSome(...))` также превращаются в невалидный
-SQL: `[not](...)` и `not()` соответственно.
+MSSQL не разрешает сравнивать предикат `IN` с числом. Две формы с `not` также
+не работают:
 
-Сотрудники с другими или пустыми кодами должны были попасть в результат
-отрицания, но все три формы вернули пустую коллекцию. Поэтому отрицание
-`MatchSome()` в этих формах на сборке 434 не работает корректно.
+**XQuery:**
+
+```xquery
+for $elem in collaborators
+where not MatchSome($elem/code, ('13744', '109295'))
+return $elem/Fields('id', 'code')
+```
+
+**SQL:**
+
+```sql
+select t_elem.[id],t_elem.[code]
+from dbo.[collaborators] t_elem
+where [not](t_elem.[code] in (@p0,@p1))
+```
+
+и
+
+**XQuery:**
+
+```xquery
+for $elem in collaborators
+where not(MatchSome($elem/code, ('13744', '109295')))
+return $elem/Fields('id', 'code')
+```
+
+**SQL:**
+
+```sql
+select t_elem.[id],t_elem.[code]
+from dbo.[collaborators] t_elem
+where not()
+```
+
+Все три формы отрицания создают невалидный SQL. На сборке 434 их использовать
+нельзя.
 
 ## ForeignElem()
 
@@ -772,13 +797,13 @@ order by t_elem.[position_id].[ForeignDispName] asc
 Этот SQL невалиден для MSSQL: `position_id` имеет тип `BigInt`, поэтому
 прямой запуск завершается ошибкой `Cannot call methods on bigint`. Вызов
 `ForeignDispName($elem/position_id)` как обычной функции тоже неприменим:
-provider оставляет `ForeignDispName(...)` в SQL, а такой SQL-функции в WTDB
-нет. Для получения имени связанного объекта на этой сборке нужно использовать
+provider оставляет `ForeignDispName(...)` в SQL, а такой SQL-функции нет. Для
+получения имени связанного объекта на этой сборке нужно использовать
 `ForeignElem()` или явное соединение каталогов.
 
 ## doc-contains()
 
-### Обычный полнотекстовый поиск
+### Обычный поиск по тексту документа
 
 **XQuery:**
 
@@ -806,16 +831,7 @@ where t_elem.[id] in (
     выполняется в документной таблице `dbo.collaborator`. Полнотекстовый
     индекс нужен на её XML-колонке `data`.
 
-    На стенде индекс включён, его заполнение завершено, а отслеживание
-    изменений работает в режиме `AUTO`. Запрос выполнился и вернул четыре
-    документа, содержащих `Анисимов`.
-
-    Без полнотекстового индекса этот же SQL завершается ошибкой:
-
-    ```text
-    SQL Error 7601: Cannot use a CONTAINS or FREETEXT predicate on table
-    'dbo.collaborator' because it is not full-text indexed.
-    ```
+    Без полнотекстового индекса этот SQL не выполняется.
 
 ### Кастомное поле
 
@@ -885,10 +901,17 @@ where t_elem.[id] in (
 )
 ```
 
-XML-выражения выполнились в MSSQL при `QUOTED_IDENTIFIER ON` и
-`ANSI_NULLS ON`.
-
 ## Иерархия
+
+!!! warning "Не переносите XQuery с IsHierChild() и Hier() по строкам"
+    На сборке 434 legacy-препроцессор разбирает иерархический запрос как
+    строку и чувствителен к пробелам и переносам. Запросы с
+    `IsHierChild()` или `IsHierChildOrSelf()` совместно с `Hier()` передавайте
+    в точной однострочной форме.
+
+    Например, перенос между `)` и `and` оставляет в итоговом XQuery лишние
+    `where` и `and`. Ограничение не относится к обычным XQuery без этой
+    иерархической обработки.
 
 !!! danger "Не используйте IsHierChild без order by Hier()"
     В `tools.xquery()` сборки 434 конструкция `order by $elem/Hier()` не
@@ -904,9 +927,7 @@ XML-выражения выполнились в MSSQL при `QUOTED_IDENTIFIER
 **XQuery:**
 
 ```xquery
-for $elem in subdivisions
-where IsHierChild($elem/id, 6327975429225669221)
-return $elem/Fields('id', 'name')
+for $elem in subdivisions where IsHierChild($elem/id, 6327975429225669221) return $elem/Fields('id', 'name')
 ```
 
 Фактически переданный provider запрос:
@@ -914,8 +935,7 @@ return $elem/Fields('id', 'name')
 **XQuery:**
 
 ```xquery
-for $elem in subdivisions
-return $elem/Fields('id', 'name')
+for $elem in subdivisions return $elem/Fields('id', 'name')
 ```
 
 **SQL:**
@@ -925,24 +945,15 @@ select t_elem.[id],t_elem.[name]
 from dbo.[subdivisions] t_elem
 ```
 
-На тестовых данных оба варианта без `Hier()` вернули все 19 строк каталога
-`subdivisions`.
-
-То же происходит с `IsHierChildOrSelf()`. Оба запроса выполняются без ошибки,
-но это не означает, что иерархическое условие сохранилось. Поэтому сам факт
-успешного выполнения нельзя использовать как единственную проверку этого
-кейса: нужно сравнивать фактический SQL или результат с ожидаемым
-иерархическим подмножеством.
+То же преобразование происходит с `IsHierChildOrSelf()`.
 
 !!! danger "IsHierChild должен быть первым условием после where"
-    Legacy-препроцессор зависит от порядка условий. Рабочая форма:
+    Рабочая форма:
 
     **XQuery:**
 
     ```xquery
-    where IsHierChild($elem/id, 6327975429225669221)
-      and $elem/is_disbanded = false()
-    order by $elem/Hier()
+    for $elem in subdivisions where IsHierChild($elem/id, 6327975429225669221) and $elem/is_disbanded = false() order by $elem/Hier() return $elem/Fields('id', 'name')
     ```
 
     После переноса иерархии остаётся корректное условие:
@@ -950,28 +961,15 @@ from dbo.[subdivisions] t_elem
     **XQuery:**
 
     ```xquery
-    where $elem/is_disbanded = false()
-    order by $elem/Hier(6327975429225669221, '-')
+    for $elem in subdivisions where $elem/is_disbanded = false() order by $elem/Hier(  6327975429225669221,'-') return $elem/Fields('id', 'name')
     ```
 
-    В итоговом SQL дополнительное ограничение сохраняется:
-
-    **SQL:**
-
-    ```sql
-    where t_elem.[is_disbanded]=0
-       or t_elem.[is_disbanded] is null
-    order by t_elem.[__sort_level] asc
-    ```
-
-    Обратный порядок на сборке 434 не работает:
+    Обратный порядок удаляет `where` и оставляет лишний `and`:
 
     **XQuery:**
 
     ```xquery
-    where $elem/is_disbanded = false()
-      and IsHierChild($elem/id, 6327975429225669221)
-    order by $elem/Hier()
+    for $elem in subdivisions where $elem/is_disbanded = false() and IsHierChild($elem/id, 6327975429225669221) order by $elem/Hier() return $elem/Fields('id', 'name')
     ```
 
     Препроцессор формирует невалидный XQuery без `where` и с лишним `and`:
@@ -979,24 +977,15 @@ from dbo.[subdivisions] t_elem
     **XQuery:**
 
     ```xquery
-    for $elem in subdivisions
-    $elem/is_disbanded = false() and
-    order by $elem/Hier(6327975429225669221, '-')
-    return $elem/Fields('id', 'name')
+    for $elem in subdivisions $elem/is_disbanded = false() and order by $elem/Hier(  6327975429225669221,'-') return $elem/Fields('id', 'name')
     ```
-
-    Трансляция и `tools.xquery()` завершаются ошибкой. В проверенном варианте
-    это не скрытое чтение всего каталога, а явный отказ выполнения.
 
 ### IsHierChild()
 
 **XQuery:**
 
 ```xquery
-for $elem in subdivisions
-where IsHierChild($elem/id, 6327975429225669221)
-order by $elem/Hier()
-return $elem/Fields('id', 'name')
+for $elem in subdivisions where IsHierChild($elem/id, 6327975429225669221) order by $elem/Hier() return $elem/Fields('id', 'name')
 ```
 
 Перед выполнением `tools.xquery()` удаляет условие `IsHierChild()` и заменяет
@@ -1041,10 +1030,7 @@ SQL дополнительно возвращает служебные поля 
 **XQuery:**
 
 ```xquery
-for $elem in subdivisions
-where IsHierChildOrSelf($elem/id, 6327975429225669221)
-order by $elem/Hier()
-return $elem/Fields('id', 'name')
+for $elem in subdivisions where IsHierChildOrSelf($elem/id, 6327975429225669221) order by $elem/Hier() return $elem/Fields('id', 'name')
 ```
 
 Перед выполнением `tools.xquery()` удаляет условие `IsHierChildOrSelf()` и
@@ -1138,7 +1124,7 @@ select distinct(t_elem.[fullname])
 from dbo.[collaborators] t_elem
 ```
 
-Проверен вариант с одним возвращаемым строковым полем.
+`distinct()` превращается в `SELECT DISTINCT` для возвращаемого поля.
 
 ### order by
 

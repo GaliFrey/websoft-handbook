@@ -18,6 +18,7 @@ nav = [
     { "Преобразование XQuery в SQL" = [
       { "Обзор" = "explanations/xquery-to-sql/index.md" },
       { "434 + MSSQL" = "explanations/xquery-to-sql/434-mssql/index.md" },
+      { "434 + PostgreSQL" = "explanations/xquery-to-sql/434-postgresql/index.md" },
     ] },
   ] },
   { "Руководства" = [

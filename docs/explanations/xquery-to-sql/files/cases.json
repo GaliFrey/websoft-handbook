@@ -269,7 +269,7 @@
       "section": "fields-and-joins",
       "source": "original",
       "title": "Два каталога в for",
-      "xQuery": "for $elem in collaborators, $pos in positions where $elem/position_id = $pos/id and $elem/id = 1105387902724063510 return $elem/id, $elem/fullname, $pos/name position_name",
+      "xQuery": "for $elem in collaborators, $pos in positions where $elem/position_id = $pos/id and $elem/id = 1105387902724063510 return $elem/id, $elem/fullname, $pos/name",
       "expectedHasRows": true
     },
     {
@@ -325,8 +325,8 @@
       "section": "conditions-and-functions",
       "source": "new",
       "title": "MatchSome() для множественного поля",
-      "xQuery": "for $elem in collaborators where MatchSome($elem/category_id, (6756124991377782860, 6971009037900419123)) return $elem/Fields('id', 'fullname', 'category_id')",
-      "expectedHasRows": false
+      "xQuery": "for $elem in collaborators where MatchSome($elem/category_id, ('123', '456')) return $elem/Fields('id', 'fullname', 'category_id')",
+      "expectedHasRows": true
     },
     {
       "id": "match-some-false",
