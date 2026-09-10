@@ -24,6 +24,7 @@ hide:
 
     - [ZIP-архивы через Websoft.Zip](explanations/websoft-zip/index.md)
     - [Регулярные выражения через WebSoft.RegExp](explanations/websoft-regexp/index.md)
+    - [Преобразование XQuery в SQL](explanations/xquery-to-sql/index.md)
 
     [Открыть разборы](explanations/index.md)
 

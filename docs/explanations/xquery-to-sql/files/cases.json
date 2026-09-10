@@ -1,0 +1,505 @@
+{
+  "schemaVersion": 1,
+  "rules": {
+    "sameXQueryOnEveryStand": true,
+    "luceneFTIndex": false,
+    "xQueryTemplateCache": false,
+    "testData": "shared-test-data",
+    "semanticAssertion": "expectedHasRows"
+  },
+  "cases": [
+    {
+      "id": "projection-comma",
+      "section": "fields-and-joins",
+      "source": "original",
+      "title": "Поля через запятую",
+      "xQuery": "for $elem in collaborators return $elem/id, $elem/fullname, $elem/position_name",
+      "expectedHasRows": true
+    },
+    {
+      "id": "projection-fields-bare",
+      "section": "fields-and-joins",
+      "source": "original",
+      "title": "Fields() с именами полей",
+      "xQuery": "for $elem in collaborators return $elem/Fields(id, fullname, position_name)",
+      "expectedHasRows": true
+    },
+    {
+      "id": "projection-fields-quoted",
+      "section": "fields-and-joins",
+      "source": "original",
+      "title": "Fields() со строковыми именами полей",
+      "xQuery": "for $elem in collaborators return $elem/Fields('id', 'fullname', 'position_name')",
+      "expectedHasRows": true
+    },
+    {
+      "id": "projection-aliases",
+      "section": "fields-and-joins",
+      "source": "original",
+      "title": "Псевдонимы полей",
+      "xQuery": "for $elem in collaborators return $elem/id collaborator_id, $elem/fullname collaborator_name",
+      "expectedHasRows": true
+    },
+    {
+      "id": "projection-fields-aliases",
+      "section": "fields-and-joins",
+      "source": "original",
+      "title": "Псевдонимы внутри Fields()",
+      "xQuery": "for $elem in collaborators return $elem/Fields(id collaborator_id, fullname collaborator_name)",
+      "expectedHasRows": true
+    },
+    {
+      "id": "return-full-record",
+      "section": "fields-and-joins",
+      "source": "new",
+      "title": "Возврат всей записи",
+      "xQuery": "for $elem in collaborators where $elem/id = 1105387902724063510 return $elem",
+      "expectedHasRows": true
+    },
+    {
+      "id": "condition-id",
+      "section": "conditions-and-functions",
+      "source": "new",
+      "title": "Числовой параметр",
+      "xQuery": "for $elem in collaborators where $elem/id = 1105387902724063510 return $elem/Fields('id', 'fullname')",
+      "expectedHasRows": true
+    },
+    {
+      "id": "condition-id-not-equal",
+      "section": "conditions-and-functions",
+      "source": "new",
+      "title": "Число не равно",
+      "xQuery": "for $elem in collaborators where $elem/id != 1105387902724063510 return $elem/Fields('id', 'fullname')",
+      "expectedHasRows": true
+    },
+    {
+      "id": "condition-id-greater",
+      "section": "conditions-and-functions",
+      "source": "new",
+      "title": "Число больше",
+      "xQuery": "for $elem in collaborators where $elem/id > 1105387902724063510 return $elem/Fields('id', 'fullname')",
+      "expectedHasRows": true
+    },
+    {
+      "id": "condition-id-greater-or-equal",
+      "section": "conditions-and-functions",
+      "source": "new",
+      "title": "Число больше или равно",
+      "xQuery": "for $elem in collaborators where $elem/id >= 1105387902724063510 return $elem/Fields('id', 'fullname')",
+      "expectedHasRows": true
+    },
+    {
+      "id": "condition-id-less",
+      "section": "conditions-and-functions",
+      "source": "new",
+      "title": "Число меньше",
+      "xQuery": "for $elem in collaborators where $elem/id < 1105387902724063510 return $elem/Fields('id', 'fullname')",
+      "expectedHasRows": true
+    },
+    {
+      "id": "condition-id-less-or-equal",
+      "section": "conditions-and-functions",
+      "source": "new",
+      "title": "Число меньше или равно",
+      "xQuery": "for $elem in collaborators where $elem/id <= 1105387902724063510 return $elem/Fields('id', 'fullname')",
+      "expectedHasRows": true
+    },
+    {
+      "id": "condition-string",
+      "section": "conditions-and-functions",
+      "source": "new",
+      "title": "Строковый параметр",
+      "xQuery": "for $elem in collaborators where $elem/code = '13744' return $elem/Fields('id', 'code')",
+      "expectedHasRows": true
+    },
+    {
+      "id": "condition-contains",
+      "section": "conditions-and-functions",
+      "source": "original",
+      "title": "Поиск подстроки через contains()",
+      "xQuery": "for $elem in collaborators where contains($elem/fullname, 'Анисимов') return $elem/Fields('id', 'fullname')",
+      "expectedHasRows": true
+    },
+    {
+      "id": "condition-contains-false",
+      "section": "conditions-and-functions",
+      "source": "original",
+      "title": "Отрицание contains()",
+      "xQuery": "for $elem in collaborators where contains($elem/fullname, 'Анисимов') = false() return $elem/Fields('id', 'fullname')",
+      "expectedHasRows": true
+    },
+    {
+      "id": "contains-percent",
+      "section": "conditions-and-functions",
+      "source": "new",
+      "title": "Знак процента в contains()",
+      "xQuery": "for $elem in collaborators where contains($elem/fullname, '%') return $elem/Fields('id', 'fullname')",
+      "expectedHasRows": true
+    },
+    {
+      "id": "contains-underscore",
+      "section": "conditions-and-functions",
+      "source": "new",
+      "title": "Подчёркивание в contains()",
+      "xQuery": "for $elem in collaborators where contains($elem/fullname, '_') return $elem/Fields('id', 'fullname')",
+      "expectedHasRows": false
+    },
+    {
+      "id": "contains-open-bracket",
+      "section": "conditions-and-functions",
+      "source": "new",
+      "title": "Открывающая скобка в contains()",
+      "xQuery": "for $elem in collaborators where contains($elem/fullname, '[') return $elem/Fields('id', 'fullname')",
+      "expectedHasRows": false
+    },
+    {
+      "id": "condition-boolean",
+      "section": "conditions-and-functions",
+      "source": "original-split",
+      "title": "Булево значение",
+      "xQuery": "for $elem in collaborators where $elem/is_dismiss = false() return $elem/Fields('id', 'is_dismiss')",
+      "expectedHasRows": true
+    },
+    {
+      "id": "condition-boolean-true",
+      "section": "conditions-and-functions",
+      "source": "original-split",
+      "title": "Равенство true()",
+      "xQuery": "for $elem in collaborators where $elem/is_dismiss = true() return $elem/Fields('id', 'is_dismiss')",
+      "expectedHasRows": true
+    },
+    {
+      "id": "condition-boolean-not-false",
+      "section": "conditions-and-functions",
+      "source": "original-split",
+      "title": "Не равно false()",
+      "xQuery": "for $elem in collaborators where $elem/is_dismiss != false() return $elem/Fields('id', 'is_dismiss')",
+      "expectedHasRows": true
+    },
+    {
+      "id": "condition-boolean-not-true",
+      "section": "conditions-and-functions",
+      "source": "original-split",
+      "title": "Не равно true()",
+      "xQuery": "for $elem in collaborators where $elem/is_dismiss != true() return $elem/Fields('id', 'is_dismiss')",
+      "expectedHasRows": true
+    },
+    {
+      "id": "condition-null",
+      "section": "conditions-and-functions",
+      "source": "original-split",
+      "title": "Сравнение с null()",
+      "xQuery": "for $elem in collaborators where $elem/position_id = null() return $elem/Fields('id', 'position_id')",
+      "expectedHasRows": true
+    },
+    {
+      "id": "condition-null-not-equal",
+      "section": "conditions-and-functions",
+      "source": "original-split",
+      "title": "Не равно null()",
+      "xQuery": "for $elem in collaborators where $elem/position_id != null() return $elem/Fields('id', 'position_id')",
+      "expectedHasRows": true
+    },
+    {
+      "id": "condition-empty-string",
+      "section": "conditions-and-functions",
+      "source": "original-split",
+      "title": "Сравнение с пустой строкой",
+      "xQuery": "for $elem in collaborators where $elem/code = '' return $elem/Fields('id', 'code')",
+      "expectedHasRows": true
+    },
+    {
+      "id": "condition-empty-string-not-equal",
+      "section": "conditions-and-functions",
+      "source": "original-split",
+      "title": "Не равно пустой строке",
+      "xQuery": "for $elem in collaborators where $elem/code != '' return $elem/Fields('id', 'code')",
+      "expectedHasRows": true
+    },
+    {
+      "id": "condition-date",
+      "section": "conditions-and-functions",
+      "source": "original",
+      "title": "Дата через date()",
+      "xQuery": "for $elem in collaborators where $elem/hire_date = date('2010-03-17') return $elem/Fields('id', 'hire_date')",
+      "expectedHasRows": true
+    },
+    {
+      "id": "condition-date-range",
+      "section": "conditions-and-functions",
+      "source": "new",
+      "title": "Диапазон дат",
+      "xQuery": "for $elem in collaborators where $elem/hire_date >= date('2010-03-01') and $elem/hire_date < date('2010-04-01') return $elem/Fields('id', 'hire_date')",
+      "expectedHasRows": true
+    },
+    {
+      "id": "condition-is-empty",
+      "section": "conditions-and-functions",
+      "source": "original",
+      "title": "Проверка IsEmpty()",
+      "xQuery": "for $elem in collaborators where IsEmpty($elem/birth_date) = true() return $elem/Fields('id', 'birth_date')",
+      "expectedHasRows": true
+    },
+    {
+      "id": "condition-is-empty-false",
+      "section": "conditions-and-functions",
+      "source": "new",
+      "title": "IsEmpty() равно false()",
+      "xQuery": "for $elem in collaborators where IsEmpty($elem/birth_date) = false() return $elem/Fields('id', 'birth_date')",
+      "expectedHasRows": true
+    },
+    {
+      "id": "condition-is-empty-not-true",
+      "section": "conditions-and-functions",
+      "source": "new",
+      "title": "IsEmpty() не равно true()",
+      "xQuery": "for $elem in collaborators where IsEmpty($elem/birth_date) != true() return $elem/Fields('id', 'birth_date')",
+      "expectedHasRows": true
+    },
+    {
+      "id": "condition-and-or-grouping",
+      "section": "conditions-and-functions",
+      "source": "new",
+      "title": "Группировка and/or скобками",
+      "xQuery": "for $elem in collaborators where ($elem/is_dismiss = false() and contains($elem/fullname, 'Анисимов')) or $elem/id = 1105387902724063521 return $elem/Fields('id', 'fullname')",
+      "expectedHasRows": true
+    },
+    {
+      "id": "join-catalog-list",
+      "section": "fields-and-joins",
+      "source": "original",
+      "title": "Два каталога в for",
+      "xQuery": "for $elem in collaborators, $pos in positions where $elem/position_id = $pos/id and $elem/id = 1105387902724063510 return $elem/id, $elem/fullname, $pos/name position_name",
+      "expectedHasRows": true
+    },
+    {
+      "id": "join-some-satisfies",
+      "section": "fields-and-joins",
+      "source": "original",
+      "title": "Связь через some/satisfies",
+      "xQuery": "for $elem in collaborators where some $pos in positions satisfies ($elem/position_id = $pos/id) and $pos/name = 'Руководитель отдела обучения и развития' return $elem/Fields('id', 'position_name')",
+      "expectedHasRows": true
+    },
+    {
+      "id": "join-some-satisfies-three",
+      "section": "fields-and-joins",
+      "source": "original",
+      "title": "Три каталога через some/satisfies",
+      "xQuery": "for $elem in collaborators where some $app in appointment_types satisfies ($pos/position_appointment_type_id = $app/id) and some $pos in positions satisfies ($elem/position_id = $pos/id) and $app/code = 'main' return $elem/Fields('id', 'position_name')",
+      "expectedHasRows": true
+    },
+    {
+      "id": "join-inner",
+      "section": "fields-and-joins",
+      "source": "original",
+      "title": "Явный join/on",
+      "xQuery": "for $pos in positions join $elem in collaborators on $elem/position_id = $pos/id where $elem/id = 1105387902724063510 return $elem/Fields('id') $pos/Fields('name')",
+      "expectedHasRows": true
+    },
+    {
+      "id": "join-left",
+      "section": "fields-and-joins",
+      "source": "original",
+      "title": "Явный ljoin/on",
+      "xQuery": "for $pos in positions ljoin $elem in collaborators on $elem/position_id = $pos/id where $elem/id = 1105387902724063510 return $elem/Fields('id') $pos/Fields('name')",
+      "expectedHasRows": true
+    },
+    {
+      "id": "join-right",
+      "section": "fields-and-joins",
+      "source": "original",
+      "title": "Явный rjoin/on",
+      "xQuery": "for $pos in positions rjoin $elem in collaborators on $elem/position_id = $pos/id where $elem/id = 1105387902724063510 return $elem/Fields('id') $pos/Fields('name')",
+      "expectedHasRows": true
+    },
+    {
+      "id": "match-some",
+      "section": "conditions-and-functions",
+      "source": "original",
+      "title": "MatchSome()",
+      "xQuery": "for $elem in collaborators where MatchSome($elem/code, ('13744', '109295')) return $elem/Fields('id', 'code')",
+      "expectedHasRows": true
+    },
+    {
+      "id": "match-some-multiple-field",
+      "section": "conditions-and-functions",
+      "source": "new",
+      "title": "MatchSome() для множественного поля",
+      "xQuery": "for $elem in collaborators where MatchSome($elem/category_id, (6756124991377782860, 6971009037900419123)) return $elem/Fields('id', 'fullname', 'category_id')",
+      "expectedHasRows": false
+    },
+    {
+      "id": "match-some-false",
+      "section": "conditions-and-functions",
+      "source": "original",
+      "title": "Отрицание MatchSome()",
+      "xQuery": "for $elem in collaborators where MatchSome($elem/code, ('13744', '109295')) = false() return $elem/Fields('id', 'code')",
+      "expectedHasRows": true
+    },
+    {
+      "id": "match-some-not-keyword",
+      "section": "conditions-and-functions",
+      "source": "new",
+      "title": "Отрицание MatchSome() оператором not",
+      "xQuery": "for $elem in collaborators where not MatchSome($elem/code, ('13744', '109295')) return $elem/Fields('id', 'code')",
+      "expectedHasRows": true
+    },
+    {
+      "id": "match-some-not-function",
+      "section": "conditions-and-functions",
+      "source": "new",
+      "title": "Отрицание MatchSome() через not()",
+      "xQuery": "for $elem in collaborators where not(MatchSome($elem/code, ('13744', '109295'))) return $elem/Fields('id', 'code')",
+      "expectedHasRows": true
+    },
+    {
+      "id": "match-some-antijoin",
+      "section": "fields-and-joins",
+      "source": "original",
+      "title": "Исключение через ljoin() и MatchSome()",
+      "xQuery": "for $excluded in collaborators ljoin $elem in collaborators on $elem/id = $excluded/id and MatchSome($excluded/code, ('13744', '109295')) where $excluded/id = null() return $elem/Fields('id')",
+      "expectedHasRows": true
+    },
+    {
+      "id": "foreign-elem",
+      "section": "conditions-and-functions",
+      "source": "original",
+      "title": "ForeignElem()",
+      "xQuery": "for $elem in collaborators where ForeignElem($elem/position_id)/name = 'Бизнес-тренер' return $elem/Fields('id', 'position_id')",
+      "expectedHasRows": true
+    },
+    {
+      "id": "foreign-disp-name-condition",
+      "section": "conditions-and-functions",
+      "source": "new",
+      "title": "ForeignDispName в условии",
+      "xQuery": "for $elem in collaborators where $elem/position_id/ForeignDispName = 'Бизнес-тренер' return $elem/Fields('id', 'position_id')",
+      "expectedHasRows": true,
+      "expectedRisk": "translation-error"
+    },
+    {
+      "id": "foreign-disp-name-order",
+      "section": "conditions-and-functions",
+      "source": "new",
+      "title": "ForeignDispName в сортировке",
+      "xQuery": "for $elem in collaborators where MatchSome($elem/code, ('13744', '109295')) order by $elem/position_id/ForeignDispName return $elem/Fields('id', 'position_id')",
+      "expectedHasRows": true,
+      "expectedRisk": "invalid-sql"
+    },
+    {
+      "id": "doc-contains-text",
+      "section": "conditions-and-functions",
+      "source": "original",
+      "title": "Полнотекстовый doc-contains()",
+      "xQuery": "for $elem in collaborators where doc-contains($elem/id, '', 'Анисимов') return $elem/Fields('id', 'fullname')",
+      "expectedHasRows": true
+    },
+    {
+      "id": "doc-contains-custom-equal",
+      "section": "conditions-and-functions",
+      "source": "original",
+      "title": "Равенство кастомного поля в doc-contains()",
+      "xQuery": "for $elem in collaborators where doc-contains($elem/id, '', '[f_zsbu = зеленый]') return $elem/Fields('id', 'fullname')",
+      "expectedHasRows": true
+    },
+    {
+      "id": "doc-contains-custom-contains",
+      "section": "conditions-and-functions",
+      "source": "original",
+      "title": "Подстрока кастомного поля в doc-contains()",
+      "xQuery": "for $elem in collaborators where doc-contains($elem/id, '', '[f_zsbu contains зелен]') return $elem/Fields('id', 'fullname')",
+      "expectedHasRows": true
+    },
+    {
+      "id": "doc-contains-custom-bool",
+      "section": "conditions-and-functions",
+      "source": "original",
+      "title": "Булево кастомное поле в doc-contains()",
+      "xQuery": "for $elem in collaborators where doc-contains($elem/id, '', '[is_universal = true~bool]') return $elem/Fields('id', 'fullname')",
+      "expectedHasRows": true
+    },
+    {
+      "id": "hierarchy-child-without-hier",
+      "section": "hierarchy",
+      "source": "new",
+      "title": "IsHierChild() без Hier()",
+      "xQuery": "for $elem in subdivisions where IsHierChild($elem/id, 6327975429225669221) return $elem/Fields('id', 'name')",
+      "expectedHasRows": true,
+      "expectedRisk": "hierarchy-filter-removed"
+    },
+    {
+      "id": "hierarchy-child-or-self-without-hier",
+      "section": "hierarchy",
+      "source": "new",
+      "title": "IsHierChildOrSelf() без Hier()",
+      "xQuery": "for $elem in subdivisions where IsHierChildOrSelf($elem/id, 6327975429225669221) return $elem/Fields('id', 'name')",
+      "expectedHasRows": true,
+      "expectedRisk": "hierarchy-filter-removed"
+    },
+    {
+      "id": "hierarchy-child-condition-after",
+      "section": "hierarchy",
+      "source": "new",
+      "title": "Условие после IsHierChild()",
+      "xQuery": "for $elem in subdivisions where IsHierChild($elem/id, 6327975429225669221) and $elem/is_disbanded = false() order by $elem/Hier() return $elem/Fields('id', 'name')",
+      "expectedHasRows": true
+    },
+    {
+      "id": "hierarchy-child-condition-before",
+      "section": "hierarchy",
+      "source": "new",
+      "title": "Условие перед IsHierChild()",
+      "xQuery": "for $elem in subdivisions where $elem/is_disbanded = false() and IsHierChild($elem/id, 6327975429225669221) order by $elem/Hier() return $elem/Fields('id', 'name')",
+      "expectedHasRows": true,
+      "expectedRisk": "hierarchy-condition-order-error"
+    },
+    {
+      "id": "hierarchy-child",
+      "section": "hierarchy",
+      "source": "original",
+      "title": "IsHierChild()",
+      "xQuery": "for $elem in subdivisions where IsHierChild($elem/id, 6327975429225669221) order by $elem/Hier() return $elem/Fields('id', 'name')",
+      "expectedHasRows": true
+    },
+    {
+      "id": "hierarchy-child-or-self",
+      "section": "hierarchy",
+      "source": "original",
+      "title": "IsHierChildOrSelf()",
+      "xQuery": "for $elem in subdivisions where IsHierChildOrSelf($elem/id, 6327975429225669221) order by $elem/Hier() return $elem/Fields('id', 'name')",
+      "expectedHasRows": true
+    },
+    {
+      "id": "hierarchy-subset",
+      "section": "hierarchy",
+      "source": "original",
+      "title": "CatalogHierSubset()",
+      "xQuery": "CatalogHierSubset('subdivisions', 6327975429225669221)",
+      "expectedHasRows": true
+    },
+    {
+      "id": "result-distinct",
+      "section": "conditions-and-functions",
+      "source": "original",
+      "title": "Уникальные ФИО через distinct()",
+      "xQuery": "for $elem in collaborators return distinct($elem/fullname)",
+      "expectedHasRows": true
+    },
+    {
+      "id": "result-order-ascending",
+      "section": "conditions-and-functions",
+      "source": "new",
+      "title": "Явная сортировка по возрастанию",
+      "xQuery": "for $elem in collaborators where MatchSome($elem/code, ('13744', '109295')) order by $elem/fullname return $elem/Fields('id', 'fullname')",
+      "expectedHasRows": true
+    },
+    {
+      "id": "result-order-descending",
+      "section": "conditions-and-functions",
+      "source": "new",
+      "title": "Явная сортировка по убыванию",
+      "xQuery": "for $elem in collaborators where MatchSome($elem/code, ('13744', '109295')) order by $elem/fullname descending return $elem/Fields('id', 'fullname')",
+      "expectedHasRows": true
+    }
+  ]
+}
