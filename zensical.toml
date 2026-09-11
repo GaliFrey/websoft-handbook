@@ -9,6 +9,7 @@ nav = [
   { "Рецепты" = [
     { "Все рецепты" = "recipes/index.md" },
     { "Определение перезапуска сервера" = "recipes/server-instance/index.md" },
+    { "Код при запуске сервера" = "recipes/server-startup-scripts/index.md" },
   ] },
   { "Разборы" = [
     { "Все разборы" = "explanations/index.md" },

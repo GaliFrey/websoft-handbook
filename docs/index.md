@@ -15,6 +15,7 @@ hide:
     Одна задача, готовый пример и ожидаемый результат.
 
     - [Как определить перезапуск WebSoft HCM Server](recipes/server-instance/index.md)
+    - [Как выполнить код при запуске WebSoft HCM Server](recipes/server-startup-scripts/index.md)
 
     [Открыть рецепты](recipes/index.md)
 

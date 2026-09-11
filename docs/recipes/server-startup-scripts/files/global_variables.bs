@@ -1,0 +1,8 @@
+"META:NAMESPACE:global_variables";
+
+var _server_mode = 'dev';
+
+function get_server_mode()
+{
+  return _server_mode;
+}
