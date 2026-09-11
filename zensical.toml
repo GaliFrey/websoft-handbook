@@ -6,7 +6,10 @@ site_dir = "site"
 # site_url и repo_url будут заданы после выбора места публикации.
 nav = [
   { "Главная" = "index.md" },
-  { "Рецепты" = "recipes/index.md" },
+  { "Рецепты" = [
+    { "Все рецепты" = "recipes/index.md" },
+    { "Определение перезапуска сервера" = "recipes/server-instance/index.md" },
+  ] },
   { "Разборы" = [
     { "Все разборы" = "explanations/index.md" },
     { "ZIP-архивы через Websoft.Zip" = [

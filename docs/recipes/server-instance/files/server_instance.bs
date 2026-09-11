@@ -1,0 +1,12 @@
+"META:NAMESPACE:server_instance";
+
+var _loaded_at = Date();
+var _instance_id = UniqueStrID();
+
+function get_info()
+{
+  return {
+    loaded_at: _loaded_at,
+    instance_id: _instance_id
+  };
+}

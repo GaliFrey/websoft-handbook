@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SPXML-INLINE-FORM>
+  <OnInit PROPERTY="1" EXPR="
+    try
+    {
+      RegisterCodeLibrary(
+        'x-local://wtv/_custom_wtv/_libs/server_instance/server_instance.bs'
+      );
+      alert( '[server_instance] initialized' );
+    }
+    catch ( err )
+    {
+      alert( '[server_instance] initialization failed: ' + err );
+    }
+  "/>
+</SPXML-INLINE-FORM>
