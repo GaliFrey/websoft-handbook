@@ -15,6 +15,7 @@ nav = [
       { "Сборка 906" = "explanations/websoft-zip/906/index.md" },
     ] },
     { "Регулярные выражения через WebSoft.RegExp" = "explanations/websoft-regexp/index.md" },
+    { "XML-поля WebSoft HCM в PostgreSQL" = "explanations/postgresql-xml/index.md" },
     { "Преобразование XQuery в SQL" = [
       { "Обзор" = "explanations/xquery-to-sql/index.md" },
       { "434 + MSSQL" = "explanations/xquery-to-sql/434-mssql/index.md" },
