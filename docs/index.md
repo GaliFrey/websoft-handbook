@@ -16,6 +16,9 @@ hide:
 
     - [Как определить перезапуск WebSoft HCM Server](recipes/server-instance/index.md)
     - [Как выполнить код при запуске WebSoft HCM Server](recipes/server-startup-scripts/index.md)
+    - [Как писать сообщения в отдельный журнал](recipes/write-custom-log/index.md)
+    - [Как добавить или обновить элементы общего справочника](recipes/update-shared-list/index.md)
+    - [Как прочитать Excel-файл на сервере](recipes/read-excel/index.md)
 
     [Открыть рецепты](recipes/index.md)
 

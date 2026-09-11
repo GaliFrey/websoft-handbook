@@ -10,6 +10,9 @@ nav = [
     { "Все рецепты" = "recipes/index.md" },
     { "Определение перезапуска сервера" = "recipes/server-instance/index.md" },
     { "Код при запуске сервера" = "recipes/server-startup-scripts/index.md" },
+    { "Запись в отдельный журнал" = "recipes/write-custom-log/index.md" },
+    { "Обновление общего справочника" = "recipes/update-shared-list/index.md" },
+    { "Чтение Excel-файла" = "recipes/read-excel/index.md" },
   ] },
   { "Разборы" = [
     { "Все разборы" = "explanations/index.md" },
