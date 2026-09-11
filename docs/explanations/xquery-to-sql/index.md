@@ -7,11 +7,11 @@
 
 - [WebSoft HCM 434 и MSSQL](./434-mssql/index.md)
 - [WebSoft HCM 434 и PostgreSQL](./434-postgresql/index.md)
-- WebSoft HCM 906 и MSSQL — не проверено.
+- [WebSoft HCM 906 и MSSQL](./906-mssql/index.md)
 - WebSoft HCM 906 и PostgreSQL — не проверено.
 
-Во всех будущих статьях будут использоваться одинаковые XQuery. Это позволит
-сравнивать именно работу сборки и SQL provider, а не разные исходные запросы.
+Во всех статьях используются одинаковые XQuery. Это позволяет сравнивать
+именно работу сборки и SQL provider, а не разные исходные запросы.
 
 ## Матрица запросов
 
