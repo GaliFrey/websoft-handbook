@@ -24,11 +24,11 @@ return $elem/Fields('id', 'fullname', 'position_name')
 
 ```sql
 select
-	t_elem."id",
-	t_elem."fullname",
-	t_elem."position_name"
+  t_elem."id",
+  t_elem."fullname",
+  t_elem."position_name"
 from
-	dbo."collaborators" t_elem
+  dbo."collaborators" t_elem
 ```
 
 Записи `Fields(id, fullname, position_name)` и
@@ -53,58 +53,58 @@ return $elem
 
 ```sql
 select
-	t_elem."id",
-	t_elem."code",
-	t_elem."fullname",
-	t_elem."login",
-	t_elem."short_login",
-	t_elem."lowercase_login",
-	t_elem."email",
-	t_elem."phone",
-	t_elem."mobile_phone",
-	to_char(t_elem."birth_date", 'YYYY-MM-DD"T"HH24:MI:SS') "birth_date",
-	t_elem."sex",
-	t_elem."pict_url",
-	t_elem."position_id",
-	t_elem."position_name",
-	t_elem."position_parent_id",
-	t_elem."position_parent_name",
-	t_elem."org_id",
-	t_elem."org_name",
-	t_elem."place_id",
-	t_elem."region_id",
-	t_elem."category_id",
-	t_elem."web_banned",
-	t_elem."is_arm_admin",
-	t_elem."is_content_admin",
-	t_elem."is_application_admin",
-	t_elem."role_id",
-	t_elem."is_candidate",
-	t_elem."candidate_status_type_id",
-	t_elem."candidate_id",
-	t_elem."is_outstaff",
-	t_elem."is_dismiss",
-	to_char(t_elem."position_date", 'YYYY-MM-DD"T"HH24:MI:SS') "position_date",
-	to_char(t_elem."hire_date", 'YYYY-MM-DD"T"HH24:MI:SS') "hire_date",
-	to_char(t_elem."dismiss_date", 'YYYY-MM-DD"T"HH24:MI:SS') "dismiss_date",
-	t_elem."in_request_black_list",
-	t_elem."allow_personal_chat_request",
-	t_elem."level_id",
-	t_elem."grade_id",
-	t_elem."knowledge_parts",
-	t_elem."tags",
-	t_elem."experts",
-	t_elem."person_object_profile_id",
-	t_elem."current_state",
-	to_char(t_elem."next_state_date", 'YYYY-MM-DD"T"HH24:MI:SS') "next_state_date",
-	t_elem."development_potential_id",
-	t_elem."efficiency_estimation_id",
-	to_char(t_elem."modification_date", 'YYYY-MM-DD"T"HH24:MI:SS') "modification_date",
-	t_elem."app_instance_id"
+  t_elem."id",
+  t_elem."code",
+  t_elem."fullname",
+  t_elem."login",
+  t_elem."short_login",
+  t_elem."lowercase_login",
+  t_elem."email",
+  t_elem."phone",
+  t_elem."mobile_phone",
+  to_char(t_elem."birth_date", 'YYYY-MM-DD"T"HH24:MI:SS') "birth_date",
+  t_elem."sex",
+  t_elem."pict_url",
+  t_elem."position_id",
+  t_elem."position_name",
+  t_elem."position_parent_id",
+  t_elem."position_parent_name",
+  t_elem."org_id",
+  t_elem."org_name",
+  t_elem."place_id",
+  t_elem."region_id",
+  t_elem."category_id",
+  t_elem."web_banned",
+  t_elem."is_arm_admin",
+  t_elem."is_content_admin",
+  t_elem."is_application_admin",
+  t_elem."role_id",
+  t_elem."is_candidate",
+  t_elem."candidate_status_type_id",
+  t_elem."candidate_id",
+  t_elem."is_outstaff",
+  t_elem."is_dismiss",
+  to_char(t_elem."position_date", 'YYYY-MM-DD"T"HH24:MI:SS') "position_date",
+  to_char(t_elem."hire_date", 'YYYY-MM-DD"T"HH24:MI:SS') "hire_date",
+  to_char(t_elem."dismiss_date", 'YYYY-MM-DD"T"HH24:MI:SS') "dismiss_date",
+  t_elem."in_request_black_list",
+  t_elem."allow_personal_chat_request",
+  t_elem."level_id",
+  t_elem."grade_id",
+  t_elem."knowledge_parts",
+  t_elem."tags",
+  t_elem."experts",
+  t_elem."person_object_profile_id",
+  t_elem."current_state",
+  to_char(t_elem."next_state_date", 'YYYY-MM-DD"T"HH24:MI:SS') "next_state_date",
+  t_elem."development_potential_id",
+  t_elem."efficiency_estimation_id",
+  to_char(t_elem."modification_date", 'YYYY-MM-DD"T"HH24:MI:SS') "modification_date",
+  t_elem."app_instance_id"
 from
-	dbo."collaborators" t_elem
+  dbo."collaborators" t_elem
 where
-	t_elem."id" = @p0
+  t_elem."id" = @p0
 ```
 
 Параметр: `@p0 bigint = 1105387902724063510`. Состав `SELECT` зависит от
@@ -127,10 +127,10 @@ return
 
 ```sql
 select
-	t_elem."id""collaborator_id",
-	t_elem."fullname""collaborator_name"
+  t_elem."id""collaborator_id",
+  t_elem."fullname""collaborator_name"
 from
-	dbo."collaborators" t_elem
+  dbo."collaborators" t_elem
 ```
 
 Между именем поля и псевдонимом нет ни пробела, ни `AS`, поэтому PostgreSQL
@@ -154,12 +154,12 @@ return $elem/Fields('id', 'fullname')
 
 ```sql
 select
-	t_elem."id",
-	t_elem."fullname"
+  t_elem."id",
+  t_elem."fullname"
 from
-	dbo."collaborators" t_elem
+  dbo."collaborators" t_elem
 where
-	t_elem."id" = @p0
+  t_elem."id" = @p0
 ```
 
 Параметр: `@p0 bigint = 1105387902724063510`.
@@ -191,12 +191,12 @@ return $elem/Fields('id', 'code')
 
 ```sql
 select
-	t_elem."id",
-	t_elem."code"
+  t_elem."id",
+  t_elem."code"
 from
-	dbo."collaborators" t_elem
+  dbo."collaborators" t_elem
 where
-	t_elem."code" = @p0
+  t_elem."code" = @p0
 ```
 
 Параметр: `@p0 varchar = 13744`.
@@ -215,12 +215,12 @@ return $elem/Fields('id', 'fullname')
 
 ```sql
 select
-	t_elem."id",
-	t_elem."fullname"
+  t_elem."id",
+  t_elem."fullname"
 from
-	dbo."collaborators" t_elem
+  dbo."collaborators" t_elem
 where
-	(t_elem."fullname" ilike @p0)
+  (t_elem."fullname" ilike @p0)
 ```
 
 Параметр уже содержит маску: `@p0 varchar = %Анисимов%`. Provider использует
@@ -252,13 +252,13 @@ return $elem/Fields('id', 'fullname')
 
 ```sql
 select
-	t_elem."id",
-	t_elem."fullname"
+  t_elem."id",
+  t_elem."fullname"
 from
-	dbo."collaborators" t_elem
+  dbo."collaborators" t_elem
 where
-	(not(t_elem."fullname" ilike @p0)
-		or t_elem."fullname" is null)
+  (not(t_elem."fullname" ilike @p0)
+  or t_elem."fullname" is null)
 ```
 
 Параметр: `@p0 varchar = %Анисимов%`.
@@ -279,13 +279,13 @@ return $elem/Fields('id', 'is_dismiss')
 
 ```sql
 select
-	t_elem."id",
-	t_elem."is_dismiss"
+  t_elem."id",
+  t_elem."is_dismiss"
 from
-	dbo."collaborators" t_elem
+  dbo."collaborators" t_elem
 where
-	((t_elem."is_dismiss" = false)
-		or ((t_elem."is_dismiss") is null))
+  ((t_elem."is_dismiss" = false)
+  or ((t_elem."is_dismiss") is null))
 ```
 
 Отрицание:
@@ -302,12 +302,12 @@ return $elem/Fields('id', 'is_dismiss')
 
 ```sql
 select
-	t_elem."id",
-	t_elem."is_dismiss"
+  t_elem."id",
+  t_elem."is_dismiss"
 from
-	dbo."collaborators" t_elem
+  dbo."collaborators" t_elem
 where
-	t_elem."is_dismiss" <> false
+  t_elem."is_dismiss" <> false
 ```
 
 Равенство `false()` включает `NULL`, а отрицание `false()` — только записи со
@@ -327,12 +327,12 @@ return $elem/Fields('id', 'is_dismiss')
 
 ```sql
 select
-	t_elem."id",
-	t_elem."is_dismiss"
+  t_elem."id",
+  t_elem."is_dismiss"
 from
-	dbo."collaborators" t_elem
+  dbo."collaborators" t_elem
 where
-	t_elem."is_dismiss" = true
+  t_elem."is_dismiss" = true
 ```
 
 Отрицание:
@@ -349,13 +349,13 @@ return $elem/Fields('id', 'is_dismiss')
 
 ```sql
 select
-	t_elem."id",
-	t_elem."is_dismiss"
+  t_elem."id",
+  t_elem."is_dismiss"
 from
-	dbo."collaborators" t_elem
+  dbo."collaborators" t_elem
 where
-	((t_elem."is_dismiss" <> true)
-		or ((t_elem."is_dismiss") is null))
+  ((t_elem."is_dismiss" <> true)
+  or ((t_elem."is_dismiss") is null))
 ```
 
 В отличие от `!= false()`, условие `!= true()` включает `NULL`.
@@ -374,12 +374,12 @@ return $elem/Fields('id', 'position_id')
 
 ```sql
 select
-	t_elem."id",
-	t_elem."position_id"
+  t_elem."id",
+  t_elem."position_id"
 from
-	dbo."collaborators" t_elem
+  dbo."collaborators" t_elem
 where
-	t_elem."position_id" is null
+  t_elem."position_id" is null
 ```
 
 Отрицание:
@@ -396,12 +396,12 @@ return $elem/Fields('id', 'position_id')
 
 ```sql
 select
-	t_elem."id",
-	t_elem."position_id"
+  t_elem."id",
+  t_elem."position_id"
 from
-	dbo."collaborators" t_elem
+  dbo."collaborators" t_elem
 where
-	t_elem."position_id" is not null
+  t_elem."position_id" is not null
 ```
 
 #### Пустая строка
@@ -418,12 +418,12 @@ return $elem/Fields('id', 'code')
 
 ```sql
 select
-	t_elem."id",
-	t_elem."code"
+  t_elem."id",
+  t_elem."code"
 from
-	dbo."collaborators" t_elem
+  dbo."collaborators" t_elem
 where
-	t_elem."code" is null
+  t_elem."code" is null
 ```
 
 Отрицание:
@@ -440,12 +440,12 @@ return $elem/Fields('id', 'code')
 
 ```sql
 select
-	t_elem."id",
-	t_elem."code"
+  t_elem."id",
+  t_elem."code"
 from
-	dbo."collaborators" t_elem
+  dbo."collaborators" t_elem
 where
-	t_elem."code" is not null
+  t_elem."code" is not null
 ```
 
 На этом provider пустая строка в сравнении с полем трактуется как `NULL`.
@@ -464,15 +464,15 @@ return $elem/Fields('id', 'birth_date')
 
 ```sql
 select
-	t_elem."id",
-	t_elem."birth_date"
+  t_elem."id",
+  t_elem."birth_date"
 from
-	dbo."collaborators" t_elem
+  dbo."collaborators" t_elem
 where
-	(case
-		when t_elem."birth_date" is null then true
-		else false
-	end)= true
+  (case
+  when t_elem."birth_date" is null then true
+  else false
+  end) = true
 ```
 
 Отрицание:
@@ -489,19 +489,19 @@ return $elem/Fields('id', 'birth_date')
 
 ```sql
 select
-	t_elem."id",
-	t_elem."birth_date"
+  t_elem."id",
+  t_elem."birth_date"
 from
-	dbo."collaborators" t_elem
+  dbo."collaborators" t_elem
 where
-	(((case
-		when t_elem."birth_date" is null then true
-		else false
-	end)= false)
-		or (((case
-			when t_elem."birth_date" is null then true
-			else false
-		end)) is null))
+  (((case
+      when t_elem."birth_date" is null then true
+      else false
+      end) = false)
+  or (((case
+        when t_elem."birth_date" is null then true
+        else false
+        end)) is null))
 ```
 
 Форма `IsEmpty($elem/birth_date) != true()` заменяет `= false` на `<> true`;
@@ -521,12 +521,12 @@ return $elem/Fields('id', 'hire_date')
 
 ```sql
 select
-	t_elem."id",
-	t_elem."hire_date"
+  t_elem."id",
+  t_elem."hire_date"
 from
-	dbo."collaborators" t_elem
+  dbo."collaborators" t_elem
 where
-	t_elem."hire_date" = @p0
+  t_elem."hire_date" = @p0
 ```
 
 Параметр: `@p0 timestamp = 2010-03-17T00:00:00`.
@@ -546,13 +546,13 @@ return $elem/Fields('id', 'hire_date')
 
 ```sql
 select
-	t_elem."id",
-	t_elem."hire_date"
+  t_elem."id",
+  t_elem."hire_date"
 from
-	dbo."collaborators" t_elem
+  dbo."collaborators" t_elem
 where
-	t_elem."hire_date" >= @p0
-	and t_elem."hire_date"<@p1
+  t_elem."hire_date" >= @p0
+  and t_elem."hire_date" < @p1
 ```
 
 Параметры: `@p0 timestamp = 2010-03-01T00:00:00`,
@@ -575,15 +575,15 @@ return $elem/Fields('id', 'fullname')
 
 ```sql
 select
-	t_elem."id",
-	t_elem."fullname"
+  t_elem."id",
+  t_elem."fullname"
 from
-	dbo."collaborators" t_elem
+  dbo."collaborators" t_elem
 where
-	(((t_elem."is_dismiss" = false)
-		or ((t_elem."is_dismiss") is null))
-		and (t_elem."fullname" ilike @p0))
-	or t_elem."id" = @p1
+  (((t_elem."is_dismiss" = false)
+    or ((t_elem."is_dismiss") is null))
+  and (t_elem."fullname" ilike @p0))
+  or t_elem."id" = @p1
 ```
 
 Параметры:
@@ -616,15 +616,15 @@ return
 
 ```sql
 select
-	t_elem."id",
-	t_elem."fullname",
-	t_pos."name"
+  t_elem."id",
+  t_elem."fullname",
+  t_pos."name"
 from
-	dbo."positions" t_pos,
-	dbo."collaborators" t_elem
+  dbo."positions" t_pos,
+  dbo."collaborators" t_elem
 where
-	t_elem."position_id" = t_pos."id"
-	and t_elem."id" = @p0
+  t_elem."position_id" = t_pos."id"
+  and t_elem."id" = @p0
 ```
 
 Параметр: `@p0 bigint = 1105387902724063510`.
@@ -648,20 +648,22 @@ return $elem/Fields('id', 'position_name')
 
 ```sql
 select
-	t_elem."id",
-	t_elem."position_name"
+  t_elem."id",
+  t_elem."position_name"
 from
-	dbo."collaborators" t_elem
+  dbo."collaborators" t_elem
 where
-	t_elem."id" in (
-	select
-		t_elem."id"
-	from
-		dbo."collaborators" t_elem
-	inner join dbo."positions" t_pos on
-		t_elem."position_id" = t_pos."id"
-	where
-		t_pos."name" = @p0)
+  t_elem."id" in (
+    select
+      t_elem."id"
+    from
+      dbo."collaborators" t_elem
+    inner join
+      dbo."positions" t_pos
+    on
+      t_elem."position_id" = t_pos."id"
+    where
+      t_pos."name" = @p0)
 ```
 
 Параметр: `@p0 varchar = Руководитель отдела обучения и развития`.
@@ -688,22 +690,26 @@ return $elem/Fields('id', 'position_name')
 
 ```sql
 select
-	t_elem."id",
-	t_elem."position_name"
+  t_elem."id",
+  t_elem."position_name"
 from
-	dbo."collaborators" t_elem
+  dbo."collaborators" t_elem
 where
-	t_elem."id" in (
-	select
-		t_elem."id"
-	from
-		dbo."collaborators" t_elem
-	inner join dbo."positions" t_pos on
-		t_elem."position_id" = t_pos."id"
-	inner join dbo."appointment_types" t_app on
-		t_pos."position_appointment_type_id" = t_app."id"
-	where
-		t_app."code" = @p0)
+  t_elem."id" in (
+    select
+      t_elem."id"
+    from
+      dbo."collaborators" t_elem
+    inner join
+      dbo."positions" t_pos
+    on
+      t_elem."position_id" = t_pos."id"
+    inner join
+      dbo."appointment_types" t_app
+    on
+      t_pos."position_appointment_type_id" = t_app."id"
+    where
+      t_app."code" = @p0)
 ```
 
 Параметр: `@p0 varchar = main`.
@@ -778,12 +784,12 @@ return $elem/Fields('id', 'code')
 
 ```sql
 select
-	t_elem."id",
-	t_elem."code"
+  t_elem."id",
+  t_elem."code"
 from
-	dbo."collaborators" t_elem
+  dbo."collaborators" t_elem
 where
-	(t_elem."code" in (@p0, @p1))
+  (t_elem."code" in (@p0, @p1))
 ```
 
 Параметры: `@p0 varchar = 13744`, `@p1 varchar = 109295`.
@@ -806,13 +812,13 @@ return $elem/Fields('id', 'fullname', 'category_id')
 
 ```sql
 select
-	t_elem."id",
-	t_elem."fullname",
-	t_elem."category_id"
+  t_elem."id",
+  t_elem."fullname",
+  t_elem."category_id"
 from
-	dbo."collaborators" t_elem
+  dbo."collaborators" t_elem
 where
-	((t_elem."category_id" && @p0))
+  ((t_elem."category_id" && @p0))
 ```
 
 Параметр: `p0 varchar[] = ["123","456"]`.
@@ -835,13 +841,13 @@ return $elem/Fields('id', 'code')
 
 ```sql
 select
-	t_elem."id",
-	t_elem."code"
+  t_elem."id",
+  t_elem."code"
 from
-	dbo."collaborators" t_elem
+  dbo."collaborators" t_elem
 where
-	(((t_elem."code" in (@p0, @p1))= false)
-		or (((t_elem."code" in (@p0, @p1))) is null))
+  (((t_elem."code" in (@p0, @p1)) = false)
+  or (((t_elem."code" in (@p0, @p1))) is null))
 ```
 
 Параметры: `@p0 varchar = 13744`, `@p1 varchar = 109295`. В отличие от
@@ -861,12 +867,12 @@ return $elem/Fields('id', 'code')
 
 ```sql
 select
-	t_elem."id",
-	t_elem."code"
+  t_elem."id",
+  t_elem."code"
 from
-	dbo."collaborators" t_elem
+  dbo."collaborators" t_elem
 where
-	"not"(t_elem."code" in (@p0, @p1))
+  "not"(t_elem."code" in (@p0, @p1))
 ```
 
 и
@@ -883,12 +889,12 @@ return $elem/Fields('id', 'code')
 
 ```sql
 select
-	t_elem."id",
-	t_elem."code"
+  t_elem."id",
+  t_elem."code"
 from
-	dbo."collaborators" t_elem
+  dbo."collaborators" t_elem
 where
-	not()
+  not()
 ```
 
 Первая команда пытается вызвать функцию `not(boolean)`, второй SQL содержит
@@ -909,14 +915,16 @@ return $elem/Fields('id', 'position_id')
 
 ```sql
 select
-	t_elem."id",
-	t_elem."position_id"
+  t_elem."id",
+  t_elem."position_id"
 from
-	dbo."collaborators" t_elem
-inner join dbo."positions" "f866364379" on
-	t_elem."position_id" = "f866364379"."id"
+  dbo."collaborators" t_elem
+inner join
+  dbo."positions" "f866364379"
+on
+  t_elem."position_id" = "f866364379"."id"
 where
-	"f866364379"."name" = @p0
+  "f866364379"."name" = @p0
 ```
 
 Параметр: `@p0 varchar = Бизнес-тренер`.
@@ -953,14 +961,14 @@ return $elem/Fields('id', 'position_id')
 
 ```sql
 select
-	t_elem."id",
-	t_elem."position_id"
+  t_elem."id",
+  t_elem."position_id"
 from
-	dbo."collaborators" t_elem
+  dbo."collaborators" t_elem
 where
-	(t_elem."code" in (@p0, @p1))
+  (t_elem."code" in (@p0, @p1))
 order by
-	t_elem."position_id"."ForeignDispName" asc nulls first
+  t_elem."position_id"."ForeignDispName" asc nulls first
 ```
 
 PostgreSQL воспринимает `position_id` как имя таблицы. Функциональная форма
@@ -985,18 +993,18 @@ return $elem/Fields('id', 'fullname')
 
 ```sql
 select
-	t_elem."id",
-	t_elem."fullname"
+  t_elem."id",
+  t_elem."fullname"
 from
-	dbo."collaborators" t_elem
+  dbo."collaborators" t_elem
 where
-	t_elem."id" in (
-	select
-		"id"
-	from
-		dbo."collaborator"
-	where
-		xmlexists('/collaborator/*[contains(text(),"Анисимов")]' passing by ref "data") = true)
+  t_elem."id" in (
+    select
+      "id"
+    from
+      dbo."collaborator"
+    where
+      xmlexists('/collaborator/*[contains(text(),"Анисимов")]' passing by ref "data") = true)
 ```
 
 При `LuceneFTIndex=False` PostgreSQL использует `xmlexists()`, а не
@@ -1020,18 +1028,18 @@ return $elem/Fields('id', 'fullname')
 
 ```sql
 select
-	t_elem."id",
-	t_elem."fullname"
+  t_elem."id",
+  t_elem."fullname"
 from
-	dbo."collaborators" t_elem
+  dbo."collaborators" t_elem
 where
-	t_elem."id" in (
-	select
-		"id"
-	from
-		dbo."collaborator"
-	where
-		xmlexists('/collaborator/custom_elems/custom_elem[name = "f_zsbu" and value = "зеленый"]' passing by ref "data"))
+  t_elem."id" in (
+    select
+      "id"
+    from
+      dbo."collaborator"
+    where
+      xmlexists('/collaborator/custom_elems/custom_elem[name = "f_zsbu" and value = "зеленый"]' passing by ref "data"))
 ```
 
 Поиск подстроки:
@@ -1048,18 +1056,18 @@ return $elem/Fields('id', 'fullname')
 
 ```sql
 select
-	t_elem."id",
-	t_elem."fullname"
+  t_elem."id",
+  t_elem."fullname"
 from
-	dbo."collaborators" t_elem
+  dbo."collaborators" t_elem
 where
-	t_elem."id" in (
-	select
-		"id"
-	from
-		dbo."collaborator"
-	where
-		xmlexists('/collaborator/custom_elems/custom_elem[name = "f_zsbu" and contains(value,  "зелен")]' passing by ref "data"))
+  t_elem."id" in (
+    select
+      "id"
+    from
+      dbo."collaborator"
+    where
+      xmlexists('/collaborator/custom_elems/custom_elem[name = "f_zsbu" and contains(value,  "зелен")]' passing by ref "data"))
 ```
 
 Булево значение:
@@ -1076,18 +1084,18 @@ return $elem/Fields('id', 'fullname')
 
 ```sql
 select
-	t_elem."id",
-	t_elem."fullname"
+  t_elem."id",
+  t_elem."fullname"
 from
-	dbo."collaborators" t_elem
+  dbo."collaborators" t_elem
 where
-	t_elem."id" in (
-	select
-		"id"
-	from
-		dbo."collaborator"
-	where
-		xmlexists('/collaborator/custom_elems/custom_elem[name = "is_universal" and value = "true"]' passing by ref "data"))
+  t_elem."id" in (
+    select
+      "id"
+    from
+      dbo."collaborator"
+    where
+      xmlexists('/collaborator/custom_elems/custom_elem[name = "is_universal" and value = "true"]' passing by ref "data"))
 ```
 
 В PostgreSQL булево значение превращается в строковое сравнение
@@ -1095,201 +1103,281 @@ where
 
 ## Иерархия
 
-!!! warning "Не переносите XQuery с IsHierChild() и Hier() по строкам"
-    На сборке 434 legacy-препроцессор разбирает иерархический запрос как
-    строку и чувствителен к пробелам и переносам. Запросы с
-    `IsHierChild()` или `IsHierChildOrSelf()` совместно с `Hier()` передавайте
-    в точной однострочной форме.
+`IsHierChild()` и `IsHierChildOrSelf()` — псевдофункции, а не обычные условия
+SQL provider. В прикладном коде используйте их только через `tools.xquery()`:
+функция предварительно удаляет иерархическое условие и переносит ID базового
+узла и режим выборки в `$elem/Hier()`. Прямая передача исходной строки
+provider обходит эту обработку.
 
-    Например, перенос между `)` и `and` оставляет в итоговом XQuery лишние
-    `where` и `and`. Ограничение не относится к обычным XQuery без этой
-    иерархической обработки.
+### Ограничения
 
-!!! danger "Не используйте IsHierChild без order by Hier()"
-    В `tools.xquery()` сборки 434 конструкция `order by $elem/Hier()` не
-    ограничивается сортировкой. Legacy-препроцессор удаляет условие
-    `IsHierChild()` или `IsHierChildOrSelf()` и переносит его ID и режим в
-    `/Hier(ID, '-')` или `/Hier(ID, '+')`.
+#### Обязательный order by Hier()
 
-    Если `/Hier()` отсутствует, условие удаляется без эквивалентной замены.
-    Запрос успешно выполняется, но потенциально возвращает весь каталог.
+`IsHierChild()` нельзя использовать без `order by $elem/Hier()`.
 
-Опасный пример:
-
-**XQuery:**
+Для однострочного XQuery:
 
 ```xquery
 for $elem in subdivisions where IsHierChild($elem/id, 6327975429225669221) return $elem/Fields('id', 'name')
 ```
 
-Фактически переданный provider запрос:
-
-**XQuery:**
+`tools.xquery()` удаляет условие целиком:
 
 ```xquery
 for $elem in subdivisions return $elem/Fields('id', 'name')
 ```
 
-**SQL:**
+Для многострочного XQuery:
+
+```xquery
+for $elem in subdivisions
+where IsHierChild($elem/id, 6327975429225669221)
+return $elem/Fields('id', 'name')
+```
+
+после предварительной обработки `tools.xquery()` остаётся пустой `where`:
+
+```xquery
+for $elem in subdivisions
+where
+return $elem/Fields('id', 'name')
+```
+
+В обоих случаях provider всё же формирует одинаковый SQL без `WHERE`:
 
 ```sql
 select
-	t_elem."id",
-	t_elem."name"
+  t_elem."id",
+  t_elem."name"
 from
-	dbo."subdivisions" t_elem
+  dbo."subdivisions" t_elem
 ```
 
-То же преобразование происходит с `IsHierChildOrSelf()`.
+Этот SQL синтаксически корректен, но логически не соответствует исходному
+запросу: иерархический фильтр потерян. На стенде контрольный запрос и обе
+формы с `IsHierChild()` вернули один полный каталог из 19 ID. Многострочный
+`IsHierChildOrSelf()` без `Hier()` дал тот же результат.
 
-!!! danger "IsHierChild должен быть первым условием после where"
-    Рабочая форма:
+!!! danger "Опасность"
+    Наличие пустого `where` в обработанном XQuery не гарантирует ошибку.
+    Provider проигнорировал его и выполнил выборку всего каталога. Переносы
+    строк не компенсируют отсутствие `order by $elem/Hier()`.
 
-    **XQuery:**
+#### Дополнительные условия
 
-    ```xquery
-    for $elem in subdivisions where IsHierChild($elem/id, 6327975429225669221) and $elem/is_disbanded = false() order by $elem/Hier() return $elem/Fields('id', 'name')
-    ```
+В многострочном запросе `IsHierChild()` и `IsHierChildOrSelf()` могут стоять
+до или после обычного условия. Если псевдофункция стоит первой:
 
-    После переноса иерархии остаётся корректное условие:
+```xquery
+for $elem in subdivisions
+where IsHierChild($elem/id, 6327975429225669221)
+  and $elem/is_disbanded = false()
+order by $elem/Hier()
+return $elem/Fields('id', 'name')
+```
 
-    **XQuery:**
+`tools.xquery()` формирует:
 
-    ```xquery
-    for $elem in subdivisions where $elem/is_disbanded = false() order by $elem/Hier(  6327975429225669221,'-') return $elem/Fields('id', 'name')
-    ```
+```xquery
+for $elem in subdivisions
+where
+ and $elem/is_disbanded = false()
+order by $elem/Hier(  6327975429225669221,'-')
+return $elem/Fields('id', 'name')
+```
 
-    Обратный порядок удаляет `where` и оставляет лишний `and`.
+При обратном порядке:
 
-    **XQuery:**
+```xquery
+for $elem in subdivisions
+where $elem/is_disbanded = false()
+  and IsHierChild($elem/id, 6327975429225669221)
+order by $elem/Hier()
+return $elem/Fields('id', 'name')
+```
 
-    ```xquery
-    for $elem in subdivisions where $elem/is_disbanded = false() and IsHierChild($elem/id, 6327975429225669221) order by $elem/Hier() return $elem/Fields('id', 'name')
-    ```
+в обработанном XQuery остаётся `and` в конце строки:
 
-    После переноса иерархии получается невалидный запрос:
+```xquery
+for $elem in subdivisions
+where $elem/is_disbanded = false()
+ and
+order by $elem/Hier(  6327975429225669221,'-')
+return $elem/Fields('id', 'name')
+```
 
-    **XQuery:**
+Обе обработанные формы содержат остаточный `and`: в первой он стоит перед
+обычным условием, во второй — после него. Несмотря на это, provider
+сформировал одинаковый SQL, а `tools.xquery()` вернул одни и те же шесть ID.
+Это подтверждённое поведение сборки 434. Порядок с псевдофункцией первой
+используется далее как единообразный вариант, поскольку он работает также в
+однострочной записи.
 
-    ```xquery
-    for $elem in subdivisions $elem/is_disbanded = false() and order by $elem/Hier(  6327975429225669221,'-') return $elem/Fields('id', 'name')
-    ```
+В однострочном запросе порядок уже влияет на результат. Рабочая форма:
 
-### IsHierChild()
+```xquery
+for $elem in subdivisions where IsHierChild($elem/id, 6327975429225669221) and $elem/is_disbanded = false() order by $elem/Hier() return $elem/Fields('id', 'name')
+```
+
+после обработки становится корректным XQuery:
+
+```xquery
+for $elem in subdivisions where $elem/is_disbanded = false() order by $elem/Hier(  6327975429225669221,'-') return $elem/Fields('id', 'name')
+```
+
+Если переставить условия:
+
+```xquery
+for $elem in subdivisions where $elem/is_disbanded = false() and IsHierChild($elem/id, 6327975429225669221) order by $elem/Hier() return $elem/Fields('id', 'name')
+```
+
+препроцессор удаляет `where`, но оставляет первое условие и `and`:
+
+```xquery
+for $elem in subdivisions $elem/is_disbanded = false() and order by $elem/Hier(  6327975429225669221,'-') return $elem/Fields('id', 'name')
+```
+
+Provider интерпретирует `and` как имя каталога и завершает запрос ошибкой:
+
+```text
+Npgsql.PostgresException
+42P01: relation "dbo.and" does not exist
+
+POSITION: 15
+```
+
+!!! warning "Предупреждение"
+    В многострочной записи проверены оба порядка условий, и после обработки
+    оба оставляют `and`. В однострочной записи работает только порядок с
+    `IsHierChild()` перед дополнительным условием. Чтобы использовать один
+    порядок в обоих форматах, ставьте псевдофункцию первой.
+
+### Рабочие примеры
+
+#### IsHierChild()
 
 **XQuery:**
 
 ```xquery
-for $elem in subdivisions where IsHierChild($elem/id, 6327975429225669221) order by $elem/Hier() return $elem/Fields('id', 'name')
+for $elem in subdivisions
+where IsHierChild($elem/id, 6327975429225669221)
+order by $elem/Hier()
+return $elem/Fields('id', 'name')
 ```
 
 Перед выполнением `tools.xquery()` удаляет условие `IsHierChild()` и заменяет
 `/Hier()` на `/Hier(6327975429225669221, '-')`.
 
+Однострочная форма, многострочная форма с LF и многострочная форма с CRLF
+вернули одни и те же шесть ID в одинаковом порядке.
+
 **SQL:**
 
 ```sql
-with recursive "subdivisions_cte"("id",
-"code",
-"name",
-"org_id",
-"parent_object_id",
-"is_disbanded",
-"knowledge_parts",
-"tags",
-"experts",
-"place_id",
-"region_id",
-"kpi_profile_id",
-"bonus_profile_id",
-"cost_center_id",
-"is_faculty",
-"modification_date",
-"app_instance_id",
-"__hlevel",
-"__sort_level",
-"__hcc") as
-(
+with recursive "subdivisions_cte"(
+  "id",
+  "code",
+  "name",
+  "org_id",
+  "parent_object_id",
+  "is_disbanded",
+  "knowledge_parts",
+  "tags",
+  "experts",
+  "place_id",
+  "region_id",
+  "kpi_profile_id",
+  "bonus_profile_id",
+  "cost_center_id",
+  "is_faculty",
+  "modification_date",
+  "app_instance_id",
+  "__hlevel",
+  "__sort_level",
+  "__hcc"
+) as (
+  select
+    "id",
+    "code",
+    "name",
+    "org_id",
+    "parent_object_id",
+    "is_disbanded",
+    "knowledge_parts",
+    "tags",
+    "experts",
+    "place_id",
+    "region_id",
+    "kpi_profile_id",
+    "bonus_profile_id",
+    "cost_center_id",
+    "is_faculty",
+    "modification_date",
+    "app_instance_id",
+    0 as __hlevel,
+    cast((cast(FLOOR(LOG(row_number() over(order by e."id"))) as varchar) ||
+      cast(row_number() over(order by e."id") as varchar(256))) as varchar(256)) as "__sort_level",
+    (
+      select
+        1
+      from
+        dbo."subdivisions" f
+      where
+        f.parent_object_id = e.id
+      limit 1) as "__hcc"
+  from
+    dbo."subdivisions" e
+  where
+    e.parent_object_id = @p0
+  union all
+  select
+    e."id",
+    e."code",
+    e."name",
+    e."org_id",
+    e."parent_object_id",
+    e."is_disbanded",
+    e."knowledge_parts",
+    e."tags",
+    e."experts",
+    e."place_id",
+    e."region_id",
+    e."kpi_profile_id",
+    e."bonus_profile_id",
+    e."cost_center_id",
+    e."is_faculty",
+    e."modification_date",
+    e."app_instance_id",
+    "__hlevel" + 1,
+    cast((d."__sort_level" || '.' || cast(FLOOR(LOG(row_number() over(order by e."id"))) as varchar) ||
+      cast(row_number() over(order by e."id") as varchar(256))) as varchar(256)) as "__sort_level",
+    (
+      select
+        1
+      where
+        exists (
+          select
+            id
+          from
+            dbo."subdivisions" f
+          where
+            e.id = f.parent_object_id)) as "__hcc"
+  from
+    dbo."subdivisions" e
+  inner join
+    "subdivisions_cte" d
+  on
+    e.parent_object_id = d.id
+)
 select
-	"id",
-	"code",
-	"name",
-	"org_id",
-	"parent_object_id",
-	"is_disbanded",
-	"knowledge_parts",
-	"tags",
-	"experts",
-	"place_id",
-	"region_id",
-	"kpi_profile_id",
-	"bonus_profile_id",
-	"cost_center_id",
-	"is_faculty",
-	"modification_date",
-	"app_instance_id",
-	0 as __hlevel,
-	cast((cast(FLOOR(LOG(row_number() over(order by e."id"))) as varchar)||
-cast(row_number() over(order by e."id") as varchar(256))) as varchar(256)) as "__sort_level",
-	(
-	select
-		1
-	from
-		dbo."subdivisions" f
-	where
-		f.parent_object_id = e.id
-	limit 1) as "__hcc"
+  t_elem."id",
+  t_elem."name",
+  "__hcc",
+  "__hlevel"
 from
-	dbo."subdivisions" e
-where
-	e.parent_object_id = @p0
-union all
-select
-	e."id",
-	e."code",
-	e."name",
-	e."org_id",
-	e."parent_object_id",
-	e."is_disbanded",
-	e."knowledge_parts",
-	e."tags",
-	e."experts",
-	e."place_id",
-	e."region_id",
-	e."kpi_profile_id",
-	e."bonus_profile_id",
-	e."cost_center_id",
-	e."is_faculty",
-	e."modification_date",
-	e."app_instance_id",
-	"__hlevel" + 1,
-	cast((d."__sort_level" || '.' || cast(FLOOR(LOG(row_number() over(order by e."id"))) as varchar)||
-cast(row_number() over(order by e."id") as varchar(256))) as varchar(256)) as "__sort_level",
-	(
-	select
-		1
-	where
-		exists (
-		select
-			id
-		from
-			dbo."subdivisions" f
-		where
-			e.id = f.parent_object_id)) as "__hcc"
-from
-	dbo."subdivisions" e
-inner join "subdivisions_cte" d
-        on
-	e.parent_object_id = d.id )
-select
-	t_elem."id",
-	t_elem."name",
-	"__hcc",
-	"__hlevel"
-from
-	"subdivisions_cte" t_elem
+  "subdivisions_cte" t_elem
 order by
-	t_elem."__sort_level" asc nulls first
+  t_elem."__sort_level" asc nulls first
 ```
 
 Параметры:
@@ -1304,12 +1392,15 @@ PostgreSQL-вариант использует `WITH RECURSIVE`, конкате�
 `limit 1`. SQL дополнительно возвращает служебные поля `__hcc` и `__hlevel`,
 а порядок иерархии хранится в `__sort_level`.
 
-### IsHierChildOrSelf()
+#### IsHierChildOrSelf()
 
 **XQuery:**
 
 ```xquery
-for $elem in subdivisions where IsHierChildOrSelf($elem/id, 6327975429225669221) order by $elem/Hier() return $elem/Fields('id', 'name')
+for $elem in subdivisions
+where IsHierChildOrSelf($elem/id, 6327975429225669221)
+order by $elem/Hier()
+return $elem/Fields('id', 'name')
 ```
 
 SQL отличается от `IsHierChild()` начальным условием `e."id" = @p0` вместо
@@ -1318,112 +1409,261 @@ SQL отличается от `IsHierChild()` начальным условие�
 **SQL:**
 
 ```sql
-with recursive "subdivisions_cte"("id",
-"code",
-"name",
-"org_id",
-"parent_object_id",
-"is_disbanded",
-"knowledge_parts",
-"tags",
-"experts",
-"place_id",
-"region_id",
-"kpi_profile_id",
-"bonus_profile_id",
-"cost_center_id",
-"is_faculty",
-"modification_date",
-"app_instance_id",
-"__hlevel",
-"__sort_level",
-"__hcc") as
-(
+with recursive "subdivisions_cte"(
+  "id",
+  "code",
+  "name",
+  "org_id",
+  "parent_object_id",
+  "is_disbanded",
+  "knowledge_parts",
+  "tags",
+  "experts",
+  "place_id",
+  "region_id",
+  "kpi_profile_id",
+  "bonus_profile_id",
+  "cost_center_id",
+  "is_faculty",
+  "modification_date",
+  "app_instance_id",
+  "__hlevel",
+  "__sort_level",
+  "__hcc"
+) as (
+  select
+    "id",
+    "code",
+    "name",
+    "org_id",
+    "parent_object_id",
+    "is_disbanded",
+    "knowledge_parts",
+    "tags",
+    "experts",
+    "place_id",
+    "region_id",
+    "kpi_profile_id",
+    "bonus_profile_id",
+    "cost_center_id",
+    "is_faculty",
+    "modification_date",
+    "app_instance_id",
+    0 as __hlevel,
+    cast((cast(FLOOR(LOG(row_number() over(order by e."id"))) as varchar) ||
+      cast(row_number() over(order by e."id") as varchar(256))) as varchar(256)) as "__sort_level",
+    (
+      select
+        1
+      from
+        dbo."subdivisions" f
+      where
+        f.parent_object_id = e.id
+      limit 1) as "__hcc"
+  from
+    dbo."subdivisions" e
+  where
+    e.id = @p0
+  union all
+  select
+    e."id",
+    e."code",
+    e."name",
+    e."org_id",
+    e."parent_object_id",
+    e."is_disbanded",
+    e."knowledge_parts",
+    e."tags",
+    e."experts",
+    e."place_id",
+    e."region_id",
+    e."kpi_profile_id",
+    e."bonus_profile_id",
+    e."cost_center_id",
+    e."is_faculty",
+    e."modification_date",
+    e."app_instance_id",
+    "__hlevel" + 1,
+    cast((d."__sort_level" || '.' || cast(FLOOR(LOG(row_number() over(order by e."id"))) as varchar) ||
+      cast(row_number() over(order by e."id") as varchar(256))) as varchar(256)) as "__sort_level",
+    (
+      select
+        1
+      where
+        exists (
+          select
+            id
+          from
+            dbo."subdivisions" f
+          where
+            e.id = f.parent_object_id)) as "__hcc"
+  from
+    dbo."subdivisions" e
+  inner join
+    "subdivisions_cte" d
+  on
+    e.parent_object_id = d.id
+)
 select
-	"id",
-	"code",
-	"name",
-	"org_id",
-	"parent_object_id",
-	"is_disbanded",
-	"knowledge_parts",
-	"tags",
-	"experts",
-	"place_id",
-	"region_id",
-	"kpi_profile_id",
-	"bonus_profile_id",
-	"cost_center_id",
-	"is_faculty",
-	"modification_date",
-	"app_instance_id",
-	0 as __hlevel,
-	cast((cast(FLOOR(LOG(row_number() over(order by e."id"))) as varchar)||
-cast(row_number() over(order by e."id") as varchar(256))) as varchar(256)) as "__sort_level",
-	(
-	select
-		1
-	from
-		dbo."subdivisions" f
-	where
-		f.parent_object_id = e.id
-	limit 1) as "__hcc"
+  t_elem."id",
+  t_elem."name",
+  "__hcc",
+  "__hlevel"
 from
-	dbo."subdivisions" e
-where
-	e.id = @p0
-union all
-select
-	e."id",
-	e."code",
-	e."name",
-	e."org_id",
-	e."parent_object_id",
-	e."is_disbanded",
-	e."knowledge_parts",
-	e."tags",
-	e."experts",
-	e."place_id",
-	e."region_id",
-	e."kpi_profile_id",
-	e."bonus_profile_id",
-	e."cost_center_id",
-	e."is_faculty",
-	e."modification_date",
-	e."app_instance_id",
-	"__hlevel" + 1,
-	cast((d."__sort_level" || '.' || cast(FLOOR(LOG(row_number() over(order by e."id"))) as varchar)||
-cast(row_number() over(order by e."id") as varchar(256))) as varchar(256)) as "__sort_level",
-	(
-	select
-		1
-	where
-		exists (
-		select
-			id
-		from
-			dbo."subdivisions" f
-		where
-			e.id = f.parent_object_id)) as "__hcc"
-from
-	dbo."subdivisions" e
-inner join "subdivisions_cte" d
-        on
-	e.parent_object_id = d.id )
-select
-	t_elem."id",
-	t_elem."name",
-	"__hcc",
-	"__hlevel"
-from
-	"subdivisions_cte" t_elem
+  "subdivisions_cte" t_elem
 order by
-	t_elem."__sort_level" asc nulls first
+  t_elem."__sort_level" asc nulls first
 ```
 
 Перед выполнением `/Hier()` заменяется на
 `/Hier(6327975429225669221, '+')`. Параметр `@p1 varchar = +` управляет
 режимом и не подставляется в SQL.
+
+Однострочная и многострочная формы вернули одни и те же семь ID в
+одинаковом порядке; первым был базовый узел `6327975429225669221`.
+
+#### IsHierChild() с дополнительным условием
+
+**XQuery:**
+
+```xquery
+for $elem in subdivisions
+where IsHierChild($elem/id, 6327975429225669221)
+  and $elem/is_disbanded = false()
+order by $elem/Hier()
+return $elem/Fields('id', 'name')
+```
+
+`tools.xquery()` преобразует её в:
+
+```xquery
+for $elem in subdivisions
+where
+ and $elem/is_disbanded = false()
+order by $elem/Hier(  6327975429225669221,'-')
+return $elem/Fields('id', 'name')
+```
+
+Ведущий `and` в обработанном XQuery — подтверждённый результат
+препроцессинга, а не опечатка. Provider принимает эту форму и формирует
+корректный SQL.
+
+**SQL:**
+
+```sql
+with recursive "subdivisions_cte"(
+  "id",
+  "code",
+  "name",
+  "org_id",
+  "parent_object_id",
+  "is_disbanded",
+  "knowledge_parts",
+  "tags",
+  "experts",
+  "place_id",
+  "region_id",
+  "kpi_profile_id",
+  "bonus_profile_id",
+  "cost_center_id",
+  "is_faculty",
+  "modification_date",
+  "app_instance_id",
+  "__hlevel",
+  "__sort_level",
+  "__hcc"
+) as (
+  select
+    "id",
+    "code",
+    "name",
+    "org_id",
+    "parent_object_id",
+    "is_disbanded",
+    "knowledge_parts",
+    "tags",
+    "experts",
+    "place_id",
+    "region_id",
+    "kpi_profile_id",
+    "bonus_profile_id",
+    "cost_center_id",
+    "is_faculty",
+    "modification_date",
+    "app_instance_id",
+    0 as __hlevel,
+    cast((cast(FLOOR(LOG(row_number() over(order by e."id"))) as varchar) ||
+      cast(row_number() over(order by e."id") as varchar(256))) as varchar(256)) as "__sort_level",
+    (
+      select
+        1
+      from
+        dbo."subdivisions" f
+      where
+        f.parent_object_id = e.id
+      limit 1) as "__hcc"
+  from
+    dbo."subdivisions" e
+  where
+    e.parent_object_id = @p0
+  union all
+  select
+    e."id",
+    e."code",
+    e."name",
+    e."org_id",
+    e."parent_object_id",
+    e."is_disbanded",
+    e."knowledge_parts",
+    e."tags",
+    e."experts",
+    e."place_id",
+    e."region_id",
+    e."kpi_profile_id",
+    e."bonus_profile_id",
+    e."cost_center_id",
+    e."is_faculty",
+    e."modification_date",
+    e."app_instance_id",
+    "__hlevel" + 1,
+    cast((d."__sort_level" || '.' || cast(FLOOR(LOG(row_number() over(order by e."id"))) as varchar) ||
+      cast(row_number() over(order by e."id") as varchar(256))) as varchar(256)) as "__sort_level",
+    (
+      select
+        1
+      where
+        exists (
+          select
+            id
+          from
+            dbo."subdivisions" f
+          where
+            e.id = f.parent_object_id)) as "__hcc"
+  from
+    dbo."subdivisions" e
+  inner join
+    "subdivisions_cte" d
+  on
+    e.parent_object_id = d.id
+)
+select
+  t_elem."id",
+  t_elem."name",
+  "__hcc",
+  "__hlevel"
+from
+  "subdivisions_cte" t_elem
+where
+  ((t_elem."is_disbanded" = false)
+  or ((t_elem."is_disbanded") is null))
+order by
+  t_elem."__sort_level" asc nulls first
+```
+
+Provider использует тот же рекурсивный CTE, что и в примере
+`IsHierChild()`, и добавляет проверку `is_disbanded = false()` во внешний
+`WHERE`. На стенде запрос вернул те же шесть ID: все выбранные подразделения
+имели `is_disbanded = false()`.
 
 ### CatalogHierSubset()
 
@@ -1439,104 +1679,106 @@ Provider также строит рекурсивный CTE. Начальная 
 **SQL:**
 
 ```sql
-with recursive "subdivisions_cte"("id",
-"code",
-"name",
-"org_id",
-"parent_object_id",
-"is_disbanded",
-"knowledge_parts",
-"tags",
-"experts",
-"place_id",
-"region_id",
-"kpi_profile_id",
-"bonus_profile_id",
-"cost_center_id",
-"is_faculty",
-"modification_date",
-"app_instance_id",
-"__hlevel",
-"__sort_level",
-"__hcc") as
-(
-select
-	"id",
-	"code",
-	"name",
-	"org_id",
-	"parent_object_id",
-	"is_disbanded",
-	"knowledge_parts",
-	"tags",
-	"experts",
-	"place_id",
-	"region_id",
-	"kpi_profile_id",
-	"bonus_profile_id",
-	"cost_center_id",
-	"is_faculty",
-	"modification_date",
-	"app_instance_id",
-	0 as "__hlevel",
-	cast((cast(FLOOR(LOG(row_number() over(order by e."id"))) as varchar)||
-cast(row_number() over(order by e."id") as varchar(256))) as varchar(256)) as "__sort_level",
-	(
-	select
-		1
-	from
-		dbo.subdivisions f
-	where
-		f.parent_object_id = e.id
-	limit 1) as "__hcc"
-from
-	dbo.subdivisions e
-where
-	parent_object_id = @p1
-union all
-select
-	e."id",
-	e."code",
-	e."name",
-	e."org_id",
-	e."parent_object_id",
-	e."is_disbanded",
-	e."knowledge_parts",
-	e."tags",
-	e."experts",
-	e."place_id",
-	e."region_id",
-	e."kpi_profile_id",
-	e."bonus_profile_id",
-	e."cost_center_id",
-	e."is_faculty",
-	e."modification_date",
-	e."app_instance_id",
-	"__hlevel" + 1,
-	cast((d."__sort_level" || '.' ||
-cast(FLOOR(LOG(row_number() over(order by e."id"))) as varchar)||
-cast(row_number() over(order by e."id") as varchar(256))) as varchar(256)) as "__sort_level",
-	(
-	select
-		1
-	where
-		exists (
-		select
-			id
-		from
-			dbo.subdivisions f
-		where
-			e.id = f.parent_object_id)) as "__hcc"
-from
-	dbo.subdivisions e
-inner join "subdivisions_cte" d
-        on
-	e.parent_object_id = d.id
+with recursive "subdivisions_cte"(
+  "id",
+  "code",
+  "name",
+  "org_id",
+  "parent_object_id",
+  "is_disbanded",
+  "knowledge_parts",
+  "tags",
+  "experts",
+  "place_id",
+  "region_id",
+  "kpi_profile_id",
+  "bonus_profile_id",
+  "cost_center_id",
+  "is_faculty",
+  "modification_date",
+  "app_instance_id",
+  "__hlevel",
+  "__sort_level",
+  "__hcc"
+) as (
+  select
+    "id",
+    "code",
+    "name",
+    "org_id",
+    "parent_object_id",
+    "is_disbanded",
+    "knowledge_parts",
+    "tags",
+    "experts",
+    "place_id",
+    "region_id",
+    "kpi_profile_id",
+    "bonus_profile_id",
+    "cost_center_id",
+    "is_faculty",
+    "modification_date",
+    "app_instance_id",
+    0 as "__hlevel",
+    cast((cast(FLOOR(LOG(row_number() over(order by e."id"))) as varchar) ||
+      cast(row_number() over(order by e."id") as varchar(256))) as varchar(256)) as "__sort_level",
+    (
+      select
+        1
+      from
+        dbo.subdivisions f
+      where
+        f.parent_object_id = e.id
+      limit 1) as "__hcc"
+  from
+    dbo.subdivisions e
+  where
+    parent_object_id = @p1
+  union all
+  select
+    e."id",
+    e."code",
+    e."name",
+    e."org_id",
+    e."parent_object_id",
+    e."is_disbanded",
+    e."knowledge_parts",
+    e."tags",
+    e."experts",
+    e."place_id",
+    e."region_id",
+    e."kpi_profile_id",
+    e."bonus_profile_id",
+    e."cost_center_id",
+    e."is_faculty",
+    e."modification_date",
+    e."app_instance_id",
+    "__hlevel" + 1,
+    cast((d."__sort_level" || '.' ||
+      cast(FLOOR(LOG(row_number() over(order by e."id"))) as varchar) ||
+      cast(row_number() over(order by e."id") as varchar(256))) as varchar(256)) as "__sort_level",
+    (
+      select
+        1
+      where
+        exists (
+          select
+            id
+          from
+            dbo.subdivisions f
+          where
+            e.id = f.parent_object_id)) as "__hcc"
+  from
+    dbo.subdivisions e
+  inner join
+    "subdivisions_cte" d
+  on
+    e.parent_object_id = d.id
 )
 select
-	t_x.*
+  t_x.*
 from
-	"subdivisions_cte" t_x
+  "subdivisions_cte" t_x
 ```
 
 Из двух параметров в SQL используется только
@@ -1546,6 +1788,10 @@ from
 Для нового кода документация рекомендует `tools.xquery()` с
 `IsHierChild()`. `CatalogHierSubset()` приведён как наблюдаемое поведение
 сборки 434, а не как рекомендуемый вариант.
+
+При повторной проверке `CatalogHierSubset()` вернул тот же набор из шести ID,
+что и `IsHierChild()`, но в другом порядке. В итоговом SQL нет `ORDER BY`,
+поэтому на порядок строк полагаться нельзя.
 
 ## Уникальные значения и сортировка
 
@@ -1562,9 +1808,9 @@ return distinct($elem/fullname)
 
 ```sql
 select
-	distinct(t_elem."fullname")
+  distinct(t_elem."fullname")
 from
-	dbo."collaborators" t_elem
+  dbo."collaborators" t_elem
 ```
 
 `distinct()` превращается в `SELECT DISTINCT` для возвращаемого поля.
@@ -1584,14 +1830,14 @@ return $elem/Fields('id', 'fullname')
 
 ```sql
 select
-	t_elem."id",
-	t_elem."fullname"
+  t_elem."id",
+  t_elem."fullname"
 from
-	dbo."collaborators" t_elem
+  dbo."collaborators" t_elem
 where
-	(t_elem."code" in (@p0, @p1))
+  (t_elem."code" in (@p0, @p1))
 order by
-	t_elem."fullname" asc nulls first
+  t_elem."fullname" asc nulls first
 ```
 
 Параметры: `@p0 varchar = 13744`, `@p1 varchar = 109295`.
@@ -1618,14 +1864,14 @@ return $elem/Fields('id', 'fullname')
 
 ```sql
 select
-	t_elem."id",
-	t_elem."fullname"
+  t_elem."id",
+  t_elem."fullname"
 from
-	dbo."collaborators" t_elem
+  dbo."collaborators" t_elem
 where
-	(t_elem."code" in (@p0, @p1))
+  (t_elem."code" in (@p0, @p1))
 order by
-	t_elem."fullname" desc nulls last
+  t_elem."fullname" desc nulls last
 ```
 
 Параметры: `@p0 varchar = 13744`, `@p1 varchar = 109295`.
