@@ -3,7 +3,8 @@ site_name = "WebSoft Handbook"
 site_description = "Практические рецепты, разборы и руководства по WebSoft"
 docs_dir = "docs"
 site_dir = "site"
-# site_url и repo_url будут заданы после выбора места публикации.
+site_url = "https://galifrey.github.io/websoft-handbook/"
+repo_url = "https://github.com/GaliFrey/websoft-handbook"
 nav = [
   { "Главная" = "index.md" },
   { "Рецепты" = [

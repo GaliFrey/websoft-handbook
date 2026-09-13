@@ -3,6 +3,8 @@
 Личный практический справочник по WebSoft.
 Стек: Markdown, Zensical, Python и uv.
 
+**[Открыть WebSoft Handbook](https://galifrey.github.io/websoft-handbook/)**
+
 ## Запуск работы
 
 Нужны Python 3.11+ и [uv](https://docs.astral.sh/uv/).
@@ -14,7 +16,7 @@ uv run --locked zensical build --strict
 ```
 
 Версии зависимостей зафиксированы в `uv.lock`; его нужно хранить в Git вместе с исходниками.
-Зависимости установлены, строгая сборка проверена. История проверок — в `history.md`.
+Зависимости установлены, строгая сборка проверена.
 
 Результат сборки — каталог `site/`, он не хранится в Git.
 
@@ -31,8 +33,9 @@ uv run --locked zensical serve
 - `docs/explanations/` — разборы механизмов и подходов.
 - `docs/guides/` — пошаговые руководства.
 - `templates/recipe.md` — шаблон нового рецепта, не включается в сайт.
+- `references/` — локальные исходные DLL WebSoft HCM, результаты декомпиляции
+  и манифесты к ним; каталог не хранится в Git.
 - `zensical.toml` — оформление, навигация и Markdown-расширения.
-- `history.md` — журнал завершённых изменений.
 
 ## Как добавить материал
 
@@ -50,7 +53,7 @@ uv run --locked zensical serve
    ] },
    ```
 
-7. Проверьте сборку и добавьте запись в `history.md`.
+7. Проверьте сборку.
 
 Пути ссылок должны быть относительными, например `./img/result.png`.
 Тексты, код и значения не следует оставлять только на скриншотах.
@@ -59,7 +62,8 @@ uv run --locked zensical serve
 
 ## Публикация
 
-Публикация и GitHub Actions пока не настроены. `site_url` и `repo_url` намеренно не заданы.
-Перед публикацией нужно выбрать адрес, задать его в конфигурации.
+Сайт публикуется в GitHub Pages при каждом изменении ветки `main`:
+
+<https://galifrey.github.io/websoft-handbook/>
 
 Документация: [Zensical](https://zensical.org/docs/), [конфигурация](https://zensical.org/docs/setup/basics/).
