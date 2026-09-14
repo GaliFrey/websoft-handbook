@@ -1,4 +1,4 @@
-# WebSocket 906, 1132 и 1333: отправка сообщений
+# WebSocket 906, 1132, 1333 и 1525: отправка сообщений
 
 [Перед началом: подготовка и подключение](connection.md).
 
@@ -19,20 +19,20 @@ ws://localhost:80/services/main_ws_service
 var xHttpStaticAssembly = tools.get_object_assembly( 'XHTTPMiddlewareStatic' );
 
 // Получаем список всех сокетов
-var WebSockets = xHttpStaticAssembly.CallClassStaticMethod( 'Datex.XHTTP.WebSocketContext', 'GetWebSockets', [null, false] ).ToArray();
+var WebSockets = xHttpStaticAssembly.CallClassStaticMethod( 'Datex.XHTTP.WebSocketContext', 'GetWebSockets', [null, false] );
 
 // Для первого запуска используйте false, для второго — true
 var jsonCompound = false;
 
 // Рассылаем сообщение каждому клиенту
-var i;
-for (i = 0; i < WebSockets.length; i++) {
+var socket;
+for (socket in WebSockets) {
     xHttpStaticAssembly.CallClassStaticMethod(
         'Datex.XHTTP.WebSocketContext',
         'WriteToWebSocketMessageQueue',
         [
-            WebSockets[i].Key,
-            'Привет! WebSockets[i].Key = ' + WebSockets[i].Key,
+            socket.Key,
+            'Привет! socket.Key = ' + socket.Key,
             jsonCompound
         ]
     );
@@ -49,17 +49,20 @@ for (i = 0; i < WebSockets.length; i++) {
 
 В Datex.XHTTP `1.24.4.27` сигнатура C# — `GetWebSockets(string filter_lambda, bool force_remote = false)`. Значение `null` отключает фильтр; в примерах ниже используется явный список аргументов `[null, false]`. В распределённой конфигурации перечисление может включать удалённые соединения.
 
-`.ToArray()` преобразует коллекцию в массив для обхода в цикле.
+В сборке 1525 коллекцию нужно перебирать напрямую: вызов `.ToArray()` через
+SP-XML-обёртку завершается ошибкой `Unknown method: ToArray()`. Прямой перебор
+проверен на стенде 1525. На стенде 906 примеры выполнялись с `.ToArray()`;
+прямой перебор там отдельно не проверялся.
 
 `WriteToWebSocketMessageQueue` добавляет сообщение в очередь указанного соединения. Внутренний обработчик `WebSocketContext` отправляет сообщения асинхронно. Параметры:
 
-* `socketId` — идентификатор WebSocket-соединения (тот самый WebSockets[i].Key)
+* `socketId` — идентификатор WebSocket-соединения (тот самый `socket.Key`)
 
 * `message` — текст сообщения, который будет отправлен клиенту
 
 * `json_compound` — режим объединения сообщений очереди; для обычного текста используйте `false`
 
-На клиенте появится строка `Привет! WebSockets[i].Key = ...` с автоматически созданным ID соединения.
+На клиенте появится строка `Привет! socket.Key = ...` с автоматически созданным ID соединения.
 
 ![Сообщение с json_compound = false](../img/906/906-first-message-text.png)
 
@@ -130,16 +133,16 @@ ws://localhost:80/services/main_ws_service?X-StatefulSocketId=123
 
 ``` javascript
 var xHttpStaticAssembly = tools.get_object_assembly( 'XHTTPMiddlewareStatic' );
-var WebSockets = xHttpStaticAssembly.CallClassStaticMethod( 'Datex.XHTTP.WebSocketContext', 'GetWebSockets', [null, false] ).ToArray();
+var WebSockets = xHttpStaticAssembly.CallClassStaticMethod( 'Datex.XHTTP.WebSocketContext', 'GetWebSockets', [null, false] );
 
-var i;
-for (i = 0; i < WebSockets.length; i++) {
+var socket;
+for (socket in WebSockets) {
     xHttpStaticAssembly.CallClassStaticMethod(
         'Datex.XHTTP.WebSocketContext',
         'WriteToWebSocketMessageQueue',
         [
-            WebSockets[i].Key,
-            'Наш socketId = ' + WebSockets[i].Key,
+            socket.Key,
+            'Наш socketId = ' + socket.Key,
             false
         ]
     );
@@ -157,19 +160,19 @@ for (i = 0; i < WebSockets.length; i++) {
 var xHttpStaticAssembly = tools.get_object_assembly( 'XHTTPMiddlewareStatic' );
 
 // Получаем список всех подключённых клиентов
-var WebSockets = xHttpStaticAssembly.CallClassStaticMethod( 'Datex.XHTTP.WebSocketContext', 'GetWebSockets', [null, false] ).ToArray();
+var WebSockets = xHttpStaticAssembly.CallClassStaticMethod( 'Datex.XHTTP.WebSocketContext', 'GetWebSockets', [null, false] );
 
 // Рассылаем сообщение каждому клиенту
-var i;
+var socket;
 var socketId;
-for (i = 0; i < WebSockets.length; i++) {
-    socketId = WebSockets[i].Key;
+for (socket in WebSockets) {
+    socketId = socket.Key;
     xHttpStaticAssembly.CallClassStaticMethod(
         'Datex.XHTTP.WebSocketContext',
         'WriteToWebSocketMessageQueue',
         [
             socketId,
-            'Общее сообщение на socketId ' + WebSockets[i].Key,
+            'Общее сообщение на socketId ' + socket.Key,
             false
         ]
     );
@@ -180,7 +183,7 @@ for (i = 0; i < WebSockets.length; i++) {
         'WriteToWebSocketMessageQueue',
         [
             socketId,
-            'Личное сообщение на socketId ' + WebSockets[i].Key,
+            'Личное сообщение на socketId ' + socket.Key,
             false
         ]
     );

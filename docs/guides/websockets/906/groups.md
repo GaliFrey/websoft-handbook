@@ -1,4 +1,4 @@
-# WebSocket 906, 1132 и 1333: группы клиентов
+# WebSocket 906, 1132, 1333 и 1525: группы клиентов
 
 [Перед началом: отправка сообщений](messages.md).
 
@@ -22,9 +22,9 @@ ws://localhost:80/services/main_ws_service?X-StatefulSocketId=id:10004::group_id
 var xHttpStaticAssembly = tools.get_object_assembly( 'XHTTPMiddlewareStatic' );
 
 // Получаем список всех подключённых клиентов
-var WebSockets = xHttpStaticAssembly.CallClassStaticMethod( 'Datex.XHTTP.WebSocketContext', 'GetWebSockets', [null, false] ).ToArray();
+var WebSockets = xHttpStaticAssembly.CallClassStaticMethod( 'Datex.XHTTP.WebSocketContext', 'GetWebSockets', [null, false] );
 
-var i;
+var socket;
 var socketId;
 var idParts;
 var data;
@@ -34,8 +34,8 @@ var param_str;
 var values;
 
 // Рассылаем сообщение каждому клиенту
-for (i = 0; i < WebSockets.length; i++) {
-    socketId = WebSockets[i].Key;
+for (socket in WebSockets) {
+    socketId = socket.Key;
     idParts = socketId.split('-s-');
     if (idParts.length != 2) continue;
     if (idParts[0] != '/services/main_ws_service') continue;
@@ -92,7 +92,7 @@ for (i = 0; i < WebSockets.length; i++) {
 
 ### Как `init_socket` формирует теги
 
-`socket_type` — это поле команды `init_socket`. В сборках 906, 1132 и 1333
+`socket_type` — это поле команды `init_socket`. В сборках 906, 1132, 1333 и 1525
 `libMain.main_socket` копирует его значение в тег соединения с тем же
 именем. Поэтому `socket_type` можно использовать для группировки через API
 тегов, хотя оно передаётся отдельно от массива `socket_tags`.
@@ -162,7 +162,7 @@ ws://localhost:80/services/main_ws_service?X-StatefulSocketId=777
 
 В одном кадре могут объединяться несколько ответов. Сопоставляйте их с запросами по `uid`, а не только по порядку получения. Теги в ответ не включаются.
 
-## Пакет команд в сборках 1132 и 1333 { #batch-commands }
+## Пакет команд в сборках 1132, 1333 и 1525 { #batch-commands }
 
 Начиная со сборки 1132 `main_socket` принимает не только один объект, но и
 JSON-массив команд. Команды выполняются последовательно, для каждой формируется
@@ -175,7 +175,7 @@ JSON-массив команд. Команды выполняются после
 ws://localhost:80/services/main_ws_service?X-StatefulSocketId=batch-test
 ```
 
-Отправьте в него допустимое для 1132 и 1333 сообщение:
+Отправьте в него допустимое для 1132, 1333 и 1525 сообщение:
 
 ``` json
 [
@@ -205,13 +205,13 @@ ws://localhost:80/services/main_ws_service?X-StatefulSocketId=batch-test
     Успешные команды это ограничение не затрагивает.
 
 Сборка 906 массив команд не поддерживает. Для совместимого со сборками
-906, 1132 и 1333 клиента отправляйте по одному JSON-объекту.
+906, 1132, 1333 и 1525 клиента отправляйте по одному JSON-объекту.
 
 Создайте агент со следующим кодом и запустите его, чтобы вывести теги соединений:
 
 ``` javascript
 var xHttpStaticAssembly = tools.get_object_assembly( 'XHTTPMiddlewareStatic' );
-var arrWebSockets = xHttpStaticAssembly.CallClassStaticMethod('Datex.XHTTP.WebSocketContext', 'GetWebSockets', [null, false]).ToArray();
+var arrWebSockets = xHttpStaticAssembly.CallClassStaticMethod('Datex.XHTTP.WebSocketContext', 'GetWebSockets', [null, false]);
 var socket;
 var tag;
 
@@ -294,7 +294,7 @@ ws://localhost:80/services/main_ws_service?X-StatefulSocketId=333
 
 ``` javascript
 var xHttpStaticAssembly = tools.get_object_assembly( 'XHTTPMiddlewareStatic' );
-var arrWebSockets = xHttpStaticAssembly.CallClassStaticMethod('Datex.XHTTP.WebSocketContext', 'GetWebSockets', [null, false]).ToArray();
+var arrWebSockets = xHttpStaticAssembly.CallClassStaticMethod('Datex.XHTTP.WebSocketContext', 'GetWebSockets', [null, false]);
 var socket;
 var tag;
 
@@ -332,7 +332,7 @@ var arrWebSockets = xHttpStaticAssembly.CallClassStaticMethod(
     'Datex.XHTTP.WebSocketContext',
     'GetWebSockets',
     ["$socket_type:send_group", true]
-).ToArray();
+);
 var socket;
 
 for (socket in arrWebSockets) {
@@ -365,7 +365,7 @@ var arrWebSockets = xHttpStaticAssembly.CallClassStaticMethod(
     'Datex.XHTTP.WebSocketContext',
     'GetWebSockets',
     ["$is_person:1", true]
-).ToArray();
+);
 var socket;
 
 for (socket in arrWebSockets) {

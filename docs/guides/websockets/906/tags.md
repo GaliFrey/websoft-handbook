@@ -1,9 +1,9 @@
-# WebSocket 906, 1132 и 1333: теги
+# WebSocket 906, 1132, 1333 и 1525: теги
 
 [Перед началом: подготовка и подключение](connection.md).
 
 В WebSoft HCM Server `2023.2.906` теги предоставляет Datex.XHTTP `1.24.4.27`.
-API тегов сохранён в сборках 1132 и 1333. Примеры ниже проверены на
+API тегов сохранён в сборках 1132, 1333 и 1525. Примеры ниже проверены на
 стенде 906.
 
 Назначение тегов сообщением сервису и отбор группы описаны в [главе о группах](groups.md).
@@ -56,7 +56,7 @@ var arrWebSockets = xHttpStaticAssembly.CallClassStaticMethod(
     'Datex.XHTTP.WebSocketContext',
     'GetWebSockets',
     [null, false]
-).ToArray();
+);
 var targetSocketId = '/services/main_ws_service-s-tags-test';
 var socket;
 var socket_type;
@@ -83,7 +83,7 @@ var arrWebSockets = xHttpStaticAssembly.CallClassStaticMethod(
     'Datex.XHTTP.WebSocketContext',
     'GetWebSockets',
     [null, false]
-).ToArray();
+);
 var targetSocketId = '/services/main_ws_service-s-tags-test';
 var socket;
 var tag;
@@ -128,7 +128,7 @@ var arrWebSockets = xHttpStaticAssembly.CallClassStaticMethod(
     'Datex.XHTTP.WebSocketContext',
     'GetWebSockets',
     [null, false]
-).ToArray();
+);
 var targetSocketId = '/services/main_ws_service-s-tags-test';
 var socket;
 var tag;
@@ -174,7 +174,7 @@ var arrWebSockets = xHttpStaticAssembly.CallClassStaticMethod(
     'Datex.XHTTP.WebSocketContext',
     'GetWebSockets',
     [null, false]
-).ToArray();
+);
 var targetSocketId = '/services/main_ws_service-s-tags-test';
 var socket;
 var tag;

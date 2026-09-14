@@ -1,18 +1,38 @@
-# WebSocket 906, 1132 и 1333: закрытие соединений
+# WebSocket 906, 1132, 1333 и 1525: закрытие соединений
 
-Примеры этой главы проверены на стенде 906. Методы `Abort` и
-`GetWebSockets`, используемые ниже, доступны во всех рассматриваемых сборках.
+Примеры этой главы проверены на стендах 906 и 1525. Методы `Abort`,
+`GetWebSockets` и `GetLocalWebSocket`, используемые ниже, доступны во всех
+рассматриваемых сборках.
 
 Команда `{"socket_action":"close_socket"}` в `main_socket` не закрывает
 соединение и не удаляет его теги: ветка обработчика пуста во всех
-сборках 906, 1132 и 1333. Для обычного закрытия со стороны тестового
-клиента нажмите «Отключиться». Принудительное прерывание через `Abort()`
-проверено ниже только на стенде 906.
+сборках 906, 1132, 1333 и 1525. На стенде 1525 после этой команды соединение
+осталось активным и ответило `$ok` на heartbeat.
 
-Обработчик `close(context)` одинаков в сборках 906, 1132 и 1333. При
+Обработчик `close(context)` одинаков в сборках 906, 1132, 1333 и 1525. При
 завершении соединения он ставит `check_socket` в очередь методом, который не
 возвращает результат доставки. Этот вызов нельзя использовать как подтверждение
 получения сообщения клиентом.
+
+## Закрытие со стороны клиента
+
+Кнопка «Отключиться» тестового клиента вызывает
+`ws.close(1000, 'manual')`. На стенде 1525 браузер получил событие:
+
+```text
+Закрыто: code=1006, reason=
+```
+
+Таким образом, переданные клиентом код `1000` и причина `manual` не
+подтвердились в результате обмена кадрами закрытия. Код `1006` означает, что
+браузер не получил корректный ответный кадр закрытия.
+
+Статический анализ Datex.XHTTP `2.26.8.20` показывает возможную причину:
+после входящего кадра закрытия сервер вызывает `CloseAsync` только при состоянии
+сокета `Open`, хотя сокет уже может находиться в состоянии `CloseReceived`.
+Сетевые кадры в этом опыте не снимались, поэтому это объяснение остаётся
+выводом по коду. На стендах 906, 1132 и 1333 этот сценарий отдельно не
+проверялся.
 
 ## Abort
 
@@ -43,21 +63,18 @@ xHttpStaticAssembly.CallClassStaticMethod(
 
 ``` javascript
 var xHttpStaticAssembly = tools.get_object_assembly( 'XHTTPMiddlewareStatic' );
-var arrWebSockets = xHttpStaticAssembly.CallClassStaticMethod(
+var socket = xHttpStaticAssembly.CallClassStaticMethod(
     'Datex.XHTTP.WebSocketContext',
-    'GetWebSockets',
-    [null, false]
-).ToArray();
-var socket;
-var found = false;
+    'GetLocalWebSocket',
+    ['/services/main_ws_service-s-555']
+);
 
-for (socket in arrWebSockets) {
-    if (socket.Key != '/services/main_ws_service-s-555') continue;
-    found = true;
-    CallObjectMethod(socket.Value, 'Abort', []);
+if (socket == null || socket == undefined) {
+    alert('Сокет не найден');
+} else {
+    CallObjectMethod(socket, 'Abort', []);
+    alert('Abort вызван');
 }
-
-alert(found ? 'Abort вызван' : 'Сокет не найден');
 ```
 
 ```
@@ -71,22 +88,17 @@ alert(found ? 'Abort вызван' : 'Сокет не найден');
 ``` javascript
 var xHttpStaticAssembly = tools.get_object_assembly( 'XHTTPMiddlewareStatic' );
 var socketId = '/services/main_ws_service-s-555';
-var arrWebSockets = xHttpStaticAssembly.CallClassStaticMethod(
+var socket = xHttpStaticAssembly.CallClassStaticMethod(
     'Datex.XHTTP.WebSocketContext',
-    'GetWebSockets',
-    [null, false]
-).ToArray();
-var socket;
-var found = false;
+    'GetLocalWebSocket',
+    [socketId]
+);
 
-for (socket in arrWebSockets) {
-    if (socket.Key == socketId) {
-        found = true;
-        break;
-    }
+if (socket == null || socket == undefined) {
+    alert('Сокет удалён из локального списка');
+} else {
+    alert('Сокет остался в локальном списке');
 }
-
-alert(found ? 'Сокет остался в GetWebSockets' : 'Сокет удалён из GetWebSockets');
 
 xHttpStaticAssembly.CallClassStaticMethod(
     'Datex.XHTTP.WebSocketContext',
@@ -96,7 +108,7 @@ xHttpStaticAssembly.CallClassStaticMethod(
 ```
 
 ```
-16:55:28 [0394] Сокет удалён из GetWebSockets
+16:55:28 [0394] Сокет удалён из локального списка
 ```
 
 На стенде 906 подтверждено:
@@ -108,6 +120,10 @@ xHttpStaticAssembly.CallClassStaticMethod(
 
 Код `1006` означает аварийное завершение без кадра закрытия WebSocket. Поэтому `Abort()` в сборке 906 работает как принудительное прерывание локального соединения, но не заменяет согласованное закрытие с кодом `1000` и причиной.
 
+На стенде 1525 после `Abort()` браузер также сообщил
+`Закрыто: code=1006, reason=`, а `GetLocalWebSocket` перестал находить соединение.
+Доставка сообщений до и после `Abort()` в этом опыте не проверялась.
+
 Это отличается от проверенного поведения сборки 434: там вызов `Abort()` оставил ID в `GetWebSockets()`, а браузер продолжил считать соединение активным.
 
-[К обзору сборок 906, 1132 и 1333](index.md).
+[К обзору сборок 906, 1132, 1333 и 1525](index.md).

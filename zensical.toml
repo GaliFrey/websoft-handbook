@@ -44,7 +44,7 @@ nav = [
         { "Группы клиентов" = "guides/websockets/434/groups.md" },
         { "Закрытие соединений" = "guides/websockets/434/closing.md" },
       ] },
-      { "Сборки 906, 1132 и 1333" = [
+      { "Сборки 906, 1132, 1333 и 1525" = [
         { "Обзор версии" = "guides/websockets/906/index.md" },
         { "Подготовка и подключение" = "guides/websockets/906/connection.md" },
         { "Отправка сообщений" = "guides/websockets/906/messages.md" },
