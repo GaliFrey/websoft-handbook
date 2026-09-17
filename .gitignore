@@ -9,9 +9,3 @@ __pycache__/
 .DS_Store
 /resources/
 /references/
-
-# Локальные инструкции и служебные файлы AI/LLM-инструментов.
-/AGENTS.md
-/history.md
-/.agents/
-/.codex/
