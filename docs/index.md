@@ -31,6 +31,7 @@ hide:
     - [XML-поля WebSoft HCM в Microsoft SQL Server](explanations/mssql-xml/index.md)
     - [XML-поля WebSoft HCM в PostgreSQL](explanations/postgresql-xml/index.md)
     - [Преобразование XQuery в SQL](explanations/xquery-to-sql/index.md)
+    - [Возможности XQuery](explanations/xquery-capabilities/index.md)
 
     [Открыть разборы](explanations/index.md)
 

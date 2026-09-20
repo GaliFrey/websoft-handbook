@@ -32,6 +32,7 @@ nav = [
       { "906 + MSSQL" = "explanations/xquery-to-sql/906-mssql/index.md" },
       { "906 + PostgreSQL" = "explanations/xquery-to-sql/906-postgresql/index.md" },
     ] },
+    { "Возможности XQuery" = "explanations/xquery-capabilities/index.md" },
   ] },
   { "Руководства" = [
     { "Все руководства" = "guides/index.md" },
