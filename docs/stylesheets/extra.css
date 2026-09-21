@@ -1,0 +1,30 @@
+.md-typeset .section-cards > ul > li {
+  position: relative;
+  isolation: isolate;
+}
+
+.md-typeset .section-cards .section-link {
+  color: inherit;
+}
+
+/* Expand the section link over the card, keeping article links above it. */
+.md-typeset .section-cards .section-link::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+}
+
+.md-typeset .section-cards a:not(.section-link) {
+  position: relative;
+  z-index: 1;
+}
+
+.md-typeset .section-cards .section-link:focus-visible {
+  outline: none;
+}
+
+.md-typeset .section-cards .section-link:focus-visible::after {
+  outline: 2px solid var(--md-accent-fg-color);
+  outline-offset: 2px;
+}
